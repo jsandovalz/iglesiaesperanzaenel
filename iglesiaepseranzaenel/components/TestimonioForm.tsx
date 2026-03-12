@@ -1,0 +1,55 @@
+"use client";
+import { useState } from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { createInteraction } from "@/lib/api";
+
+export default function TestimonioForm() {
+  const [nombre, setNombre] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const res = await createInteraction('Testimonio',nombre,descripcion);
+
+    if (res.data!=null ) {
+      alert("Tu testimonio fue compartido y está en revisión 🙏");
+      setNombre("");
+      setDescripcion("");
+    } else {
+      alert("Error al enviar la petición");
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Comparte tu testimonio</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Tu nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <textarea
+            placeholder="Comparte tu testimonio..."
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
+            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            rows={4}
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Compartir testimonio
+          </button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
