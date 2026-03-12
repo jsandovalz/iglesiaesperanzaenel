@@ -24,7 +24,7 @@ export function getSlidesByPage(data: PaginaData[] | undefined, pageName: string
   return slideInicio?.Imagenes.flatMap(img => {
     const files = img?.src ?? [];
     return files.map(file => ({
-      src: process.env.API_URL + file.url,
+      src: file.url,
       alt: img.alt,
       caption: img.caption,
       buttonText: img.button_text,
