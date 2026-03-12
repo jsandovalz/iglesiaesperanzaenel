@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toRichText } from './utils';
 
-const API_URL = process.env.API_URL || "http://localhost:1337";
+const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.strapiapp.com";
 export const fetchData = async (endpoint: string) => {
   const res = await axios.get(`${API_URL}/api/${endpoint}`);
   return res.data.data;
@@ -40,6 +40,7 @@ export async function getDataWithPagination(endpoint: string) {
 
 export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre: string, descripcion: string) {
   console.log("DESC=",descripcion);
+  console.log("HOST=",API_URL);
   const res = await fetch(`${API_URL}/api/interaccions`, {
     method: "POST",
     headers: {

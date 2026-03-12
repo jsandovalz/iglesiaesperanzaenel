@@ -1,4 +1,5 @@
 import HeroSlider from "@/components/HeroSlider";
+import TestimoniosList from "@/components/TestimoniosList";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
@@ -32,27 +33,7 @@ export default async function SomosFamilia() {
         <div>
           <h2 className="text-3xl font-semibold mb-8 text-center">Testimonios</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Andrea</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  “Aquí encontré una familia espiritual que me apoya en cada etapa de mi vida.”
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>José</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  “La comunidad me ayudó a crecer en la fe y a descubrir mi propósito.”
-                </p>
-              </CardContent>
-            </Card>
+            <TestimoniosList/>
           </div>
         </div>
 
