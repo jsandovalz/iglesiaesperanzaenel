@@ -6,7 +6,7 @@ import { getSlidesByPage } from '../utils/slides';
 
 export default async function Home() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
-  
+  console.log("DATA=",data);
   // 2. Filtras y transformas con tu helper (sync)
   const slides = getSlidesByPage(data, "Inicio");
   
