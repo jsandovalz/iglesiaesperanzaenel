@@ -52,29 +52,6 @@ export default async function Interaccion() {
             </CardHeader>
             <CardContent>
               <ContactForm/>
-              {/* <form className="space-y-4 max-w-xl mx-auto">
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-                <input
-                  type="email"
-                  placeholder="Correo electrónico"
-                  className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-                <textarea
-                  placeholder="Escribe tu consulta..."
-                  className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  rows={4}
-                ></textarea>
-                <button
-                  type="submit"
-                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-                >
-                  Enviar consulta
-                </button>
-              </form> */}
             </CardContent>
           </Card>
         </div>
