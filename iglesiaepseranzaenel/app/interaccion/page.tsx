@@ -1,7 +1,6 @@
 
 import ContactForm from "@/components/ContactForm";
 import HeroSlider from "@/components/HeroSlider";
-import InfoCard from "@/components/InfoCard";
 import MuroOracionForm from "@/components/MuroOracionForm";
 import TestimonioForm from "@/components/TestimonioForm";
 import TestimoniosList from "@/components/TestimoniosList";
@@ -15,14 +14,11 @@ export default async function Interaccion() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Interaccion");
 
-  // const dataTestimonios = await getData('interaccions?filters[Estado][$eq]=Aprobado&filters[Tipo][$eq]=Testimonio&sort=publishedAt:desc');
-  // const testimonios = dataTestimonios || [];
-  // console.log("TESTIMONOIS:",testimonios);
   
   return (
     <>
       {/* Hero reutilizado */}
-      <HeroSlider slides={slides} autoPlay interval={5000} />
+      <HeroSlider slides={slides ?? []} autoPlay interval={5000} />
 
       <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         {/* Muro de Oración */}

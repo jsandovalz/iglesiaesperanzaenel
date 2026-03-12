@@ -37,7 +37,7 @@ export default function Contacto() {
 
   return (
     <>
-      <HeroSlider slides={slides} autoPlay interval={5000} />
+      <HeroSlider slides={slides ?? []} autoPlay interval={5000} />
 
       <section className="max-w-5xl mx-auto px-6 py-16 space-y-16">
         {/* Encabezado */}

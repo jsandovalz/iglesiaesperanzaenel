@@ -1,6 +1,5 @@
 import EventsList from "@/components/EventsList";
 import HeroSlider from "@/components/HeroSlider";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 import { getSlidesByPage } from "@/utils/slides";
@@ -12,7 +11,7 @@ export default async function Eventos() {
   return (
     <>
       {/* Hero reutilizado */}
-      <HeroSlider slides={slides} autoPlay interval={5000} />
+      <HeroSlider slides={slides ?? []} autoPlay interval={5000} />
 
       <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         {/* Encabezado */}

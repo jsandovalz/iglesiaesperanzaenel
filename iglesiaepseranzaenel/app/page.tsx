@@ -14,7 +14,7 @@ export default async function Home() {
   <>
       
     {/* Hero dinámico */}
-    <HeroSlider slides={slides} autoPlay interval={5000}/>
+    <HeroSlider slides={slides ?? []} autoPlay interval={5000}/>
 
   
     <Separator className="my-12" />
