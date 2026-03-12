@@ -51,7 +51,7 @@ export default function HeroSlider({
             index === current ? "opacity-100" : "opacity-0"
           )}
         >
-          {!isDev? (
+          {/* {!isDev? ( */}
             <Image
               src={slide.src}
               alt={slide.alt}
@@ -59,14 +59,14 @@ export default function HeroSlider({
               className="object-cover brightness-75"
               priority={index === 0}
             />
-           ) : (
+           {/* ) : (
             <img
               src={slide.src}
               alt={slide.alt}
               className="absolute inset-0 w-full h-full object-cover"
             ></img>
            )}
-          
+           */}
           
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-up">
