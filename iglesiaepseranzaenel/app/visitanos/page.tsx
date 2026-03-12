@@ -23,11 +23,12 @@ export default async function Visitanos() {
               <CardTitle>Encuéntranos aquí</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
+              <div className="w-full h-[450px] rounded-lg overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=TU_EMBED_CODE"
-                  width="600"
-                  height="450"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.0434776694065!2d-68.11457395333285!3d-16.523902543669006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f21004fbdd8c7%3A0x959572fd3d2f913!2sIglesia%20Esperanza%20en%20%C3%89l!5e0!3m2!1ses-419!2sus!4v1773346907535!5m2!1ses-419!2sus"
+                  // width="600"
+                  // height="450"
+                  className="w-full h-full"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
@@ -35,7 +36,7 @@ export default async function Visitanos() {
                 ></iframe>
               </div>
               <p className="mt-4 text-gray-600 text-center">
-                Dirección: Calle Principal #123, La Paz, Bolivia
+                Dirección: Calle 5, Obrajes #538, La Paz, Bolivia
               </p>
             </CardContent>
           </Card>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
+import BibliaButton from "@/components/BibliaButton";
 
 export const metadata: Metadata = {
   title: "Iglesia",
@@ -22,7 +23,7 @@ export default function RootLayout({
 
         {/* Contenido dinámico de cada página */}
         <main className="flex-grow">{children}</main>
-
+        <BibliaButton/>
         {/* Footer global */}
         <Footer />
       </body>

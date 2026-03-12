@@ -18,7 +18,6 @@ export default function Footer() {
             <li><a href="/sobre-nosotros" className="hover:text-white">Sobre nosotros</a></li>
             <li><a href="/eventos" className="hover:text-white">Eventos</a></li>
             <li><a href="/contacto" className="hover:text-white">Contacto</a></li>
-            <li><a href="/biblia" className="hover:text-white">Biblia</a></li>
           </ul>
         </div>
 
