@@ -10,9 +10,9 @@ export default function EventsList() {
   const [pageCount, setPageCount] = useState(1);
 
   async function fetchEventos(p: number) {
-    const res = await getDataWithPagination(`events?sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5`);
+    const res = await getDataWithPagination(`events?populate[Imagen]&sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5&populate=Imagen
+`);
     const eventosSort = sortByDateOnly(res.data, "Fecha_Inicio", "asc");
-
     setEventos(eventosSort);
     setPageCount(res.meta.pagination.pageCount);
   }
@@ -28,10 +28,12 @@ export default function EventsList() {
 
           <InfoCard
             key={i}
-            title={formatDate(t.Fecha_Inicio)}
+            fechaInicio={formatDate(t.Fecha_Inicio)}
+            fechaFinal={formatDate(t.Fecha_Final)}
             subtitle={t.Ubicacion}
             content={parseRichText(t.Descripcion)}
-            fechaInicio={t.Title}
+            title={t.Title}
+            imageUrl={t.Imagen?.url}
           />
         ))}
       </div>

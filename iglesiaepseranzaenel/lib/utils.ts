@@ -45,9 +45,7 @@ export function sortByDateOnly(items: any[], field: string, order: "asc" | "desc
   return [...items].sort((a, b) => {
     const dateA = new Date(a[field] as string);
     const dateB = new Date(b[field] as string);
-    console.log("dateA=",dateA);
-    console.log("dateB=",dateB);
-
+    
     // Normalizamos a solo año-mes-día (ignorando hora)
     const onlyDateA = new Date(dateA.getFullYear(), dateA.getMonth(), dateA.getDate());
     const onlyDateB = new Date(dateB.getFullYear(), dateB.getMonth(), dateB.getDate());

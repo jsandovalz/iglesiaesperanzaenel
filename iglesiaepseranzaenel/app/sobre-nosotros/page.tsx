@@ -26,7 +26,7 @@ export default async function SobreNosotros() {
                 hemos trabajado para ser una comunidad que refleja el amor de Cristo.
               </p>
               <Image
-                src="/multimedia/historia.jpg"
+                src="/multimedia/frontis.jpg"
                 alt="Historia de la iglesia"
                 width={600}
                 height={400}
