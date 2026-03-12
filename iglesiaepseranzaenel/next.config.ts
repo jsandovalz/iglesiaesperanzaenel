@@ -13,10 +13,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000", // tu frontend
-        pathname: "/multimedia/**",
+        protocol: 'https',
+        hostname: 'steadfast-triumph-c0193f1fb8.media.strapiapp.com',
       },
     ],
   },
