@@ -14,12 +14,14 @@ type PaginaData = {
 export function getSlidesByPage(data: PaginaData[], pageName: string) {
   const slideInicio = data.find(item => item.Pagina ===pageName);
   
-  return slideInicio?.Imagenes.flatMap(img =>
-  (img.src || []).map(file => ({
+  return slideInicio?.Imagenes.flatMap(img => {
+  const files = img?.src ?? [];
+  return files.map(file => ({
     src: process.env.API_URL + file.url, // aquí concatenas tu dominio
     alt: img.alt,
     caption: img.caption,
     buttonText: img.button_text,
     buttonLink: img.button_link,
-  })));
-}
+  }));
+})
+};
