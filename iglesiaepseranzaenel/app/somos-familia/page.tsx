@@ -1,6 +1,5 @@
 import HeroSlider from "@/components/HeroSlider";
 import TestimoniosList from "@/components/TestimoniosList";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 import { getSlidesByPage } from "@/utils/slides";
