@@ -11,7 +11,7 @@ type PaginaData = {
   Imagenes: Imagen[];
 };
 
-export function getSlidesByPage(data: any, pageName: string) {
+export function getSlidesByPage(data: PaginaData[], pageName: string) {
   const slideInicio = data.find(item => item.Pagina ===pageName);
   
   return slideInicio?.Imagenes.flatMap(img =>
