@@ -26,7 +26,7 @@ export default async function SobreNosotros() {
                 hemos trabajado para ser una comunidad que refleja el amor de Cristo.
               </p>
               <Image
-                src="/multimedia/frontis.jpg"
+                src="/multimedia/frontis.jpeg"
                 alt="Historia de la iglesia"
                 width={600}
                 height={400}
@@ -77,7 +77,7 @@ export default async function SobreNosotros() {
               </CardHeader>
               <CardContent className="space-y-4 text-center">
                 <Image
-                  src="/multimedia/pastor.jpg"
+                  src="/multimedia/pastor.jpeg"
                   alt=""
                   width={300}
                   height={300}
