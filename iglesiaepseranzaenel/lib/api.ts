@@ -40,7 +40,7 @@ export async function getDataWithPagination(endpoint: string) {
 
 export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre: string, descripcion: string) {
   console.log("DESC=",descripcion);
-  console.log("HOST=",API_URL);
+  console.log("HOST:=",API_URL);
   const res = await fetch(`${API_URL}/api/interaccions`, {
     method: "POST",
     headers: {
