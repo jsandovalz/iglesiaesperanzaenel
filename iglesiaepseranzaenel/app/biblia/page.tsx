@@ -38,12 +38,26 @@ export default function Biblia() {
           v.verse <= end
       );
     } else {
-      // Caso 2: búsqueda por palabra clave
-      const keyword = query.toLowerCase();
-      setKeyword(keyword);
-      encontrados = biblia.verses.filter(v =>
-        v.text.toLowerCase().includes(keyword)
-      );
+      // Caso 3: búsqueda por capítulo (ej. "Juan 3" o "Juan 3:")
+      const chapterRegex = /^(\w+)\s+(\d+):?$/;
+      const matchChapter = query.match(chapterRegex);
+
+      if (matchChapter) {
+        const [, libro, capitulo] = matchChapter;
+        const cap = Number(capitulo);
+
+        encontrados = biblia.verses.filter(
+          v =>
+            v.book_name.toLowerCase() === libro.toLowerCase() &&
+            v.chapter === cap);
+      } else {
+        // Caso 2: búsqueda por palabra clave
+        const keyword = query.toLowerCase();
+        setKeyword(keyword);
+        encontrados = biblia.verses.filter(v =>
+          v.text.toLowerCase().includes(keyword)
+        );
+      }
     }
 
     setResults(encontrados);
