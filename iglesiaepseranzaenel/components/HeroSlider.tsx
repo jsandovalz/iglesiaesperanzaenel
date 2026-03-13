@@ -25,7 +25,7 @@ export default function HeroSlider({
 }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
   const isDev = process.env.NODE_ENV === "development";
-  
+  console.log("SLIDES=",slides);
   const nextSlide = () =>
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   const prevSlide = () =>
