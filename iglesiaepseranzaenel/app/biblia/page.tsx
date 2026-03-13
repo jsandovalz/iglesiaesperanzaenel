@@ -64,7 +64,7 @@ export default function Biblia() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
+    <section className="max-w-6xl mx-auto px-6 py-44 space-y-10">
       <header className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Biblia

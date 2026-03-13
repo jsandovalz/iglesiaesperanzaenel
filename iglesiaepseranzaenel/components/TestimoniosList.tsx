@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import InfoCard from "@/components/InfoCard";
 import { parseRichText } from "@/lib/utils";
 import { getDataWithPagination } from "@/lib/api";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export default function TestimoniosList() {
   const [testimonios, setTestimonios] = useState<any[]>([]);
@@ -32,23 +33,32 @@ export default function TestimoniosList() {
       </div>
 
       {/* Controles de paginación */}
-      <div className="flex justify-center gap-4 mt-6">
-        <button
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-        >
-          Anterior
-        </button>
-        <span>Página {page} de {pageCount}</span>
-        <button
-          disabled={page === pageCount}
-          onClick={() => setPage(page + 1)}
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-        >
-          Siguiente
-        </button>
-      </div>
+      {pageCount > 1 && (
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            <ChevronLeftIcon className="w-5 h-5" />
+            <span>Anterior</span>
+          </button>
+
+          <span className="text-gray-700 font-medium">
+            Página {page} de {pageCount}
+          </span>
+
+          <button
+            disabled={page === pageCount}
+            onClick={() => setPage(page + 1)}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            <span>Siguiente</span>
+            <ChevronRightIcon className="w-5 h-5" />
+          </button>
+        </div>
+      )}
+
     </div>
   );
 }
