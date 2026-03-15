@@ -11,11 +11,10 @@ function resaltar(texto: string, keyword: string) {
 
 
 export default function Biblia() {
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [keyword, setKeyword] = useState("");
-  const searchParams = useSearchParams();
-
 
   const runSearch = (query: string) => {
     let encontrados: any[] = [];
@@ -60,12 +59,7 @@ export default function Biblia() {
       }
     }
 
-    setResults(encontrados);
-  };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    runSearch(query);
+    return encontrados;
   };
 
   useEffect(() => {
@@ -73,10 +67,19 @@ export default function Biblia() {
     if (q) {
       setQuery(q);
       // aquí llamas a tu función de búsqueda
-      runSearch(q);
+      const resp=runSearch(q);
+      setResults(resp);
+
     }
   }, [searchParams]);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const resp = runSearch(query);
+    setResults(resp);
+  };
+
+  
   return (
     <section className="max-w-6xl mx-auto px-6 py-44 space-y-10">
       <header className="text-center">
