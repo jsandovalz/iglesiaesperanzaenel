@@ -2,21 +2,30 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import biblia from "../data/rv_1858.json"; // archivo local
+//import biblia from "../data/rv_1858.json"; // archivo local
 
 function resaltar(texto: string, keyword: string) {
+  if (!keyword) return texto;
   const regex = new RegExp(`(${keyword})`, "gi");
   return texto.replace(regex, "<strong>$1</strong>");
 }
-
 
 export default function Biblia() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [keyword, setKeyword] = useState("");
+  const [biblia, setBiblia] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/rv_1858.json")
+      .then(res => res.json())
+      .then(data => setBiblia(data));
+  }, []);
 
   const runSearch = (query: string) => {
+    if (!biblia) return [];
+
     let encontrados: any[] = [];
 
     // Caso 1: búsqueda por referencia (ej. "Juan 3:16-20")
@@ -64,14 +73,14 @@ export default function Biblia() {
 
   useEffect(() => {
     const q = searchParams.get("query");
-    if (q) {
+    if (q && biblia) {
       setQuery(q);
       // aquí llamas a tu función de búsqueda
       const resp=runSearch(q);
       setResults(resp);
 
     }
-  }, [searchParams]);
+  }, [searchParams, biblia]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
