@@ -10,12 +10,20 @@ function resaltar(texto: string, keyword: string) {
   return texto.replace(regex, "<strong>$1</strong>");
 }
 
+interface Verso {
+  book_name: string;
+  chapter: number;
+  verse: number;
+  text: string;
+}
+
+
 export default function Biblia() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<Verso[]>([]);
   const [keyword, setKeyword] = useState("");
-  const [biblia, setBiblia] = useState<any>(null);
+  const [biblia, setBiblia] = useState<{ verses: Verso[] } | null>(null);
 
   useEffect(() => {
     fetch("/rv_1858.json")
@@ -38,8 +46,8 @@ export default function Biblia() {
       const start = Number(inicio);
       const end = fin ? Number(fin) : start;
 
-      encontrados = biblia.verses.filter(
-        v =>
+      encontrados = biblia!.verses.filter(
+        (v: Verso) =>
           v.book_name.toLowerCase() === libro.toLowerCase() &&
           v.chapter === cap &&
           v.verse >= start &&
@@ -54,8 +62,8 @@ export default function Biblia() {
         const [, libro, capitulo] = matchChapter;
         const cap = Number(capitulo);
 
-        encontrados = biblia.verses.filter(
-          v =>
+        encontrados = biblia!.verses.filter(
+          (v: Verso) =>
             v.book_name.toLowerCase() === libro.toLowerCase() &&
             v.chapter === cap);
       } else {
