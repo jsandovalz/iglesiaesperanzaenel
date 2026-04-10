@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import BibliaButton from "@/components/BibliaButton";
 
 export const metadata: Metadata = {
-  title: "Iglesia",
+  title: "Iglesia Esperanza En El",
   description: "Sitio oficial de nuestra iglesia",
 };
 
