@@ -21,9 +21,10 @@ export default async function SobreNosotros() {
           <Card>
             <CardContent className="space-y-4 text-gray-700">
               <p>
-                La Iglesia Esperanza en Él nació con el deseo de ser un lugar de encuentro
-                para familias y personas que buscan crecer en la fe. Desde nuestros inicios,
-                hemos trabajado para ser una comunidad que refleja el amor de Cristo.
+                Entendemos que, históricamente, las distintas y variadas denominaciones surgieron por fraccionamientos provocadas por el ser humano. 
+                Es por eso que, abocados a la Palabra de Dios, encontramos que no existe una denominación más adecuada para todo el Cuerpo de Cristo (la Iglesia) 
+                como la de cristianos. (Hch. 11:26) Y se congregaron allí todo un año con la iglesia, y enseñaron a mucha gente; 
+                y a los discípulos se les llamó cristianos por primera vez en Antioquía.
               </p>
               <Image
                 src="/multimedia/frontis.jpeg"
@@ -40,12 +41,13 @@ export default async function SobreNosotros() {
 
         {/* Misión */}
         <div id="mision">
-          <h2 className="text-3xl font-semibold mb-8 text-center">Nuestra Misión</h2>
+          <h2 className="text-3xl font-semibold mb-8 text-center">Nuestra Misión (Estrategia para cumplir el propósito)</h2>
           <Card>
             <CardContent className="text-gray-700 text-center">
               <p>
-               Nuestra misión es proclamar el evangelio de Jesucristo, formar
-                discípulos y servir a nuestra comunidad con amor y esperanza.
+               La manera o estrategia a través de la cual cumpliremos nuestra visión, está plasmada en la misión encomendada por Dios 
+               a esta parte del cuerpo de Cristo: Construir una comunidad de creyentes mediante la predicación del evangelio, 
+               la enseñanza de la Biblia y la preparación para el servicio
               </p>
             </CardContent>
           </Card>
@@ -57,8 +59,8 @@ export default async function SobreNosotros() {
           <Card>
             <CardContent className="text-gray-700 text-center">
               <p>
-                Ser una iglesia que impacte la sociedad, transformando vidas y
-                familias a través del poder de la fe y la unidad en Cristo.
+                Nuestra visión o propósito, proviene del sueño de una vida nueva para todos los que aún no conocen a Jesús como Señor y Salvador:
+                Existimos para mostrar que las vidas, familias y comunidades pueden ser transformadas por el amor de Cristo.
               </p>
             </CardContent>
           </Card>

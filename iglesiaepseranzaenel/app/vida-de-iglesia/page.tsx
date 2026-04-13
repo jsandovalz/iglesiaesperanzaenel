@@ -26,7 +26,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/ministerio-jovenes.jpg"
+                  src="/multimedia/ministerio-jovenes.jpeg"
                   alt="Ministerio de Jóvenes"
                   width={400}
                   height={250}
@@ -44,7 +44,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/ministerio-ninos.jpg"
+                  src="/multimedia/ministerio-ninos.jpeg"
                   alt="Ministerio de Niños"
                   width={400}
                   height={250}
@@ -62,7 +62,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/ministerio-alabanza.jpg"
+                  src="/multimedia/ministerio-alabanza.jpeg"
                   alt="Ministerio de Alabanza"
                   width={400}
                   height={250}
@@ -84,18 +84,18 @@ export default async function VidaDeIglesia() {
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
-                <CardTitle>Grupos en hogares</CardTitle>
+                <CardTitle>Reunión de Abuelitas</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/grupo-hogar.jpg"
+                  src="/multimedia/reunion-abuelitas.jpeg"
                   alt="Grupo en hogar"
                   width={500}
                   height={300}
                   className="rounded-lg shadow-md"
                 />
                 <p>
-                  Pequeños grupos que se reúnen semanalmente en hogares para estudiar la Biblia y compartir vida juntos.
+                  Pequeños grupos que se reúnen semanalmente.
                 </p>
               </CardContent>
             </Card>
