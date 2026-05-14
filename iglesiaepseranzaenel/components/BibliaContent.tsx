@@ -81,7 +81,7 @@ export default function BibliaContent() {
   useEffect(() => {
     const q = searchParams.get("query");
     if (q) {
-      fetch(`https://bible-api.com/${encodeURIComponent(q)}?translation=rvr1960`)
+      fetch(`/api/biblia?query=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
           // Bible API devuelve un objeto con "verses"
@@ -93,7 +93,7 @@ export default function BibliaContent() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    fetch(`https://bible-api.com/${encodeURIComponent(query)}?translation=rvr1960`)
+    fetch(`/api/biblia?query=${encodeURIComponent(query)}`)
       .then(res => res.json())
       .then(data => {
         setResults(data.verses || []);
