@@ -57,3 +57,12 @@ export function sortByDateOnly(items: any[], field: string, order: "asc" | "desc
     }
   });
 }
+
+export function groupByTipo(items) {
+  return items.reduce((groups, item) => {
+    const tipo = item.attributes.Tipo || "Sin Tipo";
+    if (!groups[tipo]) groups[tipo] = [];
+    groups[tipo].push(item);
+    return groups;
+  }, {});
+}
