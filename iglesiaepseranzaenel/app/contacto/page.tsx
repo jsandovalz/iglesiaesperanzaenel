@@ -27,6 +27,7 @@ export default function Contacto() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337"}/api/contactos`, {
+      cache: "no-store",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: formData }),

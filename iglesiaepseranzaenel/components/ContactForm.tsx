@@ -11,6 +11,7 @@ export default function ContactForm() {
     const API_URL = process.env.API_URL || "http://localhost:1337";
 
     const res = await fetch(`${API_URL}/api/contact/send`, {
+      cache: "no-store",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, email, consulta }),

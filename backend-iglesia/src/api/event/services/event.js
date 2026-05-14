@@ -9,6 +9,7 @@ module.exports = {
       const mensaje = `📅 Nuevo evento: ${evento.titulo}\n\n${evento.descripcion}\n\nFecha: ${evento.fecha_inicio}`;
 
       const response = await fetch(`https://graph.facebook.com/${pageId}/feed`, {
+        cache: "no-store",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

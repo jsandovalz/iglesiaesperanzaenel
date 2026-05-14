@@ -10,7 +10,7 @@ export const fetchData = async (endpoint: string) => {
 export async function getData(endpoint: string) {
   //?populate=*
   try {
-    const response = await fetch(`${API_URL}/api/${endpoint}`)
+    const response = await fetch(`${API_URL}/api/${endpoint}`,{cache: "no-store"})
     if(!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -25,7 +25,7 @@ export async function getData(endpoint: string) {
 export async function getDataWithPagination(endpoint: string) {
   //?populate=*
   try {
-    const response = await fetch(`${API_URL}/api/${endpoint}`)
+    const response = await fetch(`${API_URL}/api/${endpoint}`,{cache: "no-store"})
     if(!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -42,6 +42,7 @@ export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre:
   console.log("DESC=",descripcion);
   console.log("HOST:=",API_URL);
   const res = await fetch(`${API_URL}/api/interaccions`, {
+    cache:"no-store",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
