@@ -79,7 +79,7 @@ export interface Multime {
 
 export function groupByTipo(items: Multi[]): Record<string, Multi[]> {
   return items.reduce((groups, item) => {
-    const tipo = item.attributes.Tipo || "Sin Tipo";
+    const tipo = item.Tipo || "Sin Tipo";
     if (!groups[tipo]) groups[tipo] = [];
     groups[tipo].push(item);
     return groups;
