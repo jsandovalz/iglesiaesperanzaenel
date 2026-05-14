@@ -22,19 +22,21 @@ export default function BibliaContent() {
   const [results, setResults] = useState<Verso[]>([]);
   const [keyword, setKeyword] = useState("");
 
+  // Ya no usamos archivo local, sino API
   const [biblia, setBiblia] = useState<{ verses: Verso[] } | null>(null);
 
   useEffect(() => {
-    fetch("/rv_1858.json")
+    // Aquí llamas a tu API (puede ser interna o externa)
+    fetch("/api/biblia")
       .then(res => res.json())
-      .then(data => setBiblia(data));
+      .then(data => setBiblia(data))
+      .catch(err => console.error("Error cargando Biblia:", err));
   }, []);
 
   const runSearch = (q: string) => {
     if (!biblia) return [];
     let encontrados: Verso[] = [];
 
-    // Caso 1: referencia
     const refRegex = /^(\w+)\s+(\d+):(\d+)(?:-(\d+))?$/;
     const match = q.match(refRegex);
 
@@ -52,7 +54,6 @@ export default function BibliaContent() {
           v.verse <= end
       );
     } else {
-      // Caso 3: capítulo
       const chapterRegex = /^(\w+)\s+(\d+):?$/;
       const matchChapter = q.match(chapterRegex);
 
@@ -66,7 +67,6 @@ export default function BibliaContent() {
             v.chapter === cap
         );
       } else {
-        // Caso 2: palabra clave
         const keyword = q.toLowerCase();
         setKeyword(keyword);
         encontrados = biblia.verses.filter((v: Verso) =>
@@ -80,17 +80,25 @@ export default function BibliaContent() {
 
   useEffect(() => {
     const q = searchParams.get("query");
-    if (q && biblia) {
-      setQuery(q);
-      const resp = runSearch(q);
-      setResults(resp);
+    if (q) {
+      fetch(`https://bible-api.com/${encodeURIComponent(q)}?translation=rvr1960`)
+        .then(res => res.json())
+        .then(data => {
+          // Bible API devuelve un objeto con "verses"
+          setResults(data.verses);
+        })
+        .catch(err => console.error("Error consultando Bible API:", err));
     }
-  }, [searchParams, biblia]);
+  }, [searchParams]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    const resp = runSearch(query);
-    setResults(resp);
+    fetch(`https://bible-api.com/${encodeURIComponent(query)}?translation=rvr1960`)
+      .then(res => res.json())
+      .then(data => {
+        setResults(data.verses || []);
+        setKeyword(query.toLowerCase());
+      });
   };
 
   return (
@@ -106,7 +114,7 @@ export default function BibliaContent() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Ejemplo: "Juan 3:16 o Juan 3:16-20" o "amor"'
+          placeholder='Ejemplo: "Juan 3:16" o rangos "Juan 3:16-20" o "Juan 3"'
           className="flex-1 p-3 rounded border"
         />
         <button
