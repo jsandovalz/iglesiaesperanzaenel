@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function Multimedia() {
   const strapiData = await getData('multimedias?populate=*&sort=Fecha:asc');
   const grupos = groupByTipo(strapiData);
+  console.log("Grupos=",grupos);
   return (
     <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
       {/* Encabezado */}

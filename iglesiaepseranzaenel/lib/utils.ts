@@ -58,11 +58,30 @@ export function sortByDateOnly(items: any[], field: string, order: "asc" | "desc
   });
 }
 
-export function groupByTipo(items) {
+export type TypeArchive = {
+  url: string;
+  mime: string;
+};
+
+export interface Multi {
+  Titulo: string;
+  Url: string ;
+  Descripcion: any[];
+  Fecha: string;
+  Tipo: string;
+  Archivo: TypeArchive[]
+}
+
+export interface Multime {
+  multi: Multi[];
+}
+
+
+export function groupByTipo(items: Multi[]): Record<string, Multi[]> {
   return items.reduce((groups, item) => {
     const tipo = item.attributes.Tipo || "Sin Tipo";
     if (!groups[tipo]) groups[tipo] = [];
     groups[tipo].push(item);
     return groups;
-  }, {});
+  }, {} as Record<string, Multi[]>);
 }

@@ -2,22 +2,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { parseRichText } from "../utils/richtext";
 
-type TypeArchive = {
-  url: string;
-  mime: string;
-};
-
-interface Multi {
-  Titulo: string;
-  Url: string ;
-  Descripcion: any[];
-  Fecha: string;
-  Tipo: string;
-  Archivo: TypeArchive[]
-}
-interface Multime {
-  multi: Multi[];
-}
 
 export default function Live({
     multi
