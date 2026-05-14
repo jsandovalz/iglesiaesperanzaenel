@@ -22,8 +22,10 @@ export default async function Multimedia() {
       {/* Archivo de Prédicas */}
       <div>
         <h2 className="text-3xl font-semibold mb-8 text-center">Archivo de Prédicas</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <Live multi={strapiData} />
+        <div className="max-h-[600px] overflow-y-auto pr-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Live multi={strapiData} />
+          </div>
         </div>
       </div>
 
