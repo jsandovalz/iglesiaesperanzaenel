@@ -3,7 +3,7 @@ import Live from "@/components/Live";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 
-
+export const dynamic = "force-dynamic";
 export default async function Multimedia() {
   const strapiData = await getData('multimedias?populate=*&sort=Fecha:asc');
   

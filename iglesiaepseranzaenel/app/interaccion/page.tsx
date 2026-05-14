@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 import { getSlidesByPage } from "@/utils/slides";
 
-
+export const dynamic = "force-dynamic";
 export default async function Interaccion() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Interaccion");

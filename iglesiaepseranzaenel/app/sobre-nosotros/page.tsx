@@ -5,6 +5,7 @@ import { getData } from "@/lib/api";
 import { getSlidesByPage } from "@/utils/slides";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 export default async function SobreNosotros() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Sobre Nosotros");
