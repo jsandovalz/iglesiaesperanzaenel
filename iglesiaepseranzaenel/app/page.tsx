@@ -3,6 +3,8 @@ import HeroSlider from "@/components/HeroSlider";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 import { getSlidesByPage } from '../utils/slides';
+import ActividadesSemana from "@/components/ActividadesSemana";
+
 
 export const dynamic = "force-dynamic";
 export default async function Home() {
@@ -18,6 +20,8 @@ export default async function Home() {
     <HeroSlider slides={slides ?? []} autoPlay interval={5000}/>
 
   
+    <Separator className="my-12" />
+    <ActividadesSemana />
     <Separator className="my-12" />
 
     {/* Bloque de transmisiones en vivo */}
