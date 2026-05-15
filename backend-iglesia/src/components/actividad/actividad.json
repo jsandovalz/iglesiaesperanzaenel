@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_actividad_actividad",
+  "info": {
+    "displayName": "actividad"
+  },
+  "attributes": {
+    "fecha": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "hora": {
+      "type": "string"
+    }
+  }
+}
