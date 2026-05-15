@@ -1,4 +1,4 @@
-"use client";
+use client";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,72 +24,72 @@ export default function BibliaContent() {
 
   const [biblia, setBiblia] = useState<{ verses: Verso[] } | null>(null);
 
-  // Cargar JSON local SOLO para búsqueda por palabra clave
   useEffect(() => {
-    fetch("/rv_1858.json")
+    fetch("/rv_1909.json")
       .then(res => res.json())
       .then(data => setBiblia(data));
   }, []);
 
-  // ---------------------------
-  // function to call internal API
-  // ---------------------------
-  const buscarReferencia = async (q: string) => {
-    const res = await fetch(`/api/biblia?query=${encodeURIComponent(q)}`);
-    const data = await res.json();
-
-    if (!data.verses) return [];
-
-    return data.verses.map((v: any) => ({
-      book_name: v.book_name,
-      chapter: v.chapter,
-      verse: v.verse,
-      text: v.text
-    }));
-  };
-
-  // ---------------------------
-  // principal function to search
-  // ---------------------------
-  const runSearch = async (q: string) => {
-    if (!q || q.trim() === "") return [];
-
-    // Caso 1: referencia tipo "Juan 3:16" o "Juan 3:16-20"
-    const refRegex = /^([\wáéíóúñ]+)\s+(\d+):(\d+)(?:-(\d+))?$/i;
-    if (refRegex.test(q)) {
-      return await buscarReferencia(q);
-    }
-
-    // Caso 2: capítulo "Juan 3"
-    const chapterRegex = /^([\wáéíóúñ]+)\s+(\d+)$/i;
-    if (chapterRegex.test(q)) {
-      return await buscarReferencia(q);
-    }
-
-    // Caso 3: palabra clave (usa JSON local)
+  const runSearch = (q: string) => {
     if (!biblia) return [];
+    let encontrados: Verso[] = [];
 
-    const keywordLower = q.toLowerCase();
-    setKeyword(keywordLower);
+    // Caso 1: referencia
+    const refRegex = /^(\w+)\s+(\d+):(\d+)(?:-(\d+))?$/;
+    const match = q.match(refRegex);
 
-    return biblia.verses.filter((v: Verso) =>
-      v.text.toLowerCase().includes(keywordLower)
-    );
+    if (match) {
+      const [, libro, capitulo, inicio, fin] = match;
+      const cap = Number(capitulo);
+      const start = Number(inicio);
+      const end = fin ? Number(fin) : start;
+
+      encontrados = biblia.verses.filter(
+        (v: Verso) =>
+          v.book_name.toLowerCase() === libro.toLowerCase() &&
+          v.chapter === cap &&
+          v.verse >= start &&
+          v.verse <= end
+      );
+    } else {
+      // Caso 3: capítulo
+      const chapterRegex = /^(\w+)\s+(\d+):?$/;
+      const matchChapter = q.match(chapterRegex);
+
+      if (matchChapter) {
+        const [, libro, capitulo] = matchChapter;
+        const cap = Number(capitulo);
+
+        encontrados = biblia.verses.filter(
+          (v: Verso) =>
+            v.book_name.toLowerCase() === libro.toLowerCase() &&
+            v.chapter === cap
+        );
+      } else {
+        // Caso 2: palabra clave
+        const keyword = q.toLowerCase();
+        setKeyword(keyword);
+        encontrados = biblia.verses.filter((v: Verso) =>
+          v.text.toLowerCase().includes(keyword)
+        );
+      }
+    }
+
+    return encontrados;
   };
 
-  // Ejecutar búsqueda cuando cambia la URL
   useEffect(() => {
     const q = searchParams.get("query");
-
-    if (q) {
+    if (q && biblia) {
       setQuery(q);
-      runSearch(q).then(setResults);
+      const resp = runSearch(q);
+      setResults(resp);
     }
   }, [searchParams, biblia]);
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    const resp = await runSearch(query);
+    const resp = runSearch(query);
     setResults(resp);
   };
 
@@ -106,7 +106,7 @@ export default function BibliaContent() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Ejemplo: "Juan 3:16", "Juan 3", o "amor"'
+          placeholder='Ejemplo: "Juan 3:16 o Juan 3:16-20" o "amor"'
           className="flex-1 p-3 rounded border"
         />
         <button
