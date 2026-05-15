@@ -1,4 +1,4 @@
-"use client";
+"Génesiuse client";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,59 +24,136 @@ export default function BibliaContent() {
 
   const [biblia, setBiblia] = useState<{ verses: Verso[] } | null>(null);
 
+  const BOOKS = [
+    "Genesis", "Exodo", "Levitico", "Numeros", "Deuteronomio",
+    "Josue", "Jueces", "Rut", "1 Samuel", "2 Samuel",
+    "1 Reyes", "2 Reyes", "1 Cronicas", "2 Cronicas",
+    "Esdras", "Nehemias", "Ester", "Job", "Salmos",
+    "Proverbios", "Eclesiastes", "Cantares", "Isaias",
+    "Jeremias", "Lamentaciones", "Ezequiel", "Daniel",
+    "Oseas", "Joel", "Amos", "Abdias", "Jonas",
+    "Miqueas", "Nahum", "Habacuc", "Sofonias",
+    "Hageo", "Zacarias", "Malaquias",
+    "Mateo", "Marcos", "Lucas", "Juan",
+    "Hechos", "Romanos", "1 Corintios", "2 Corintios",
+    "Galatas", "Efesios", "Filipenses", "Colosenses",
+    "1 Tesalonicenses", "2 Tesalonicenses",
+    "1 Timoteo", "2 Timoteo", "Tito", "Filemon",
+    "Hebreos", "Santiago", "1 Pedro", "2 Pedro",
+    "1 Juan", "2 Juan", "3 Juan", "Judas",
+    "Apocalipsis"
+  ];
+
+  // Abreviaturas
+  const BOOK_ALIASES: Record<string, string> = {
+    gn: "Genesis",
+    ex: "Exodo",
+    lv: "Levitico",
+    nm: "Numeros",
+    dt: "Deuteronomio",
+    sal: "Salmos",
+    pr: "Proverbios",
+    ec: "Eclesiastes",
+    cnt: "Cantares",
+    is: "Isaias",
+    jr: "Jeremias",
+    mt: "Mateo",
+    mr: "Marcos",
+    lc: "Lucas",
+    jn: "Juan",
+    hch: "Hechos",
+    rom: "Romanos",
+    ap: "Apocalipsis"
+  };
+
+
   useEffect(() => {
     fetch("/rv_1909.json")
       .then(res => res.json())
       .then(data => setBiblia(data));
   }, []);
 
+  function normalize(str: string) {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ñ/gi, "n")
+      .toLowerCase()
+      .trim();
+  }
+
+  function resolveBookName(input: string) {
+    const n = normalize(input);
+
+    // 1. Si coincide con abreviatura
+    if (BOOK_ALIASES[n]) return BOOK_ALIASES[n];
+
+    // 2. Si coincide con un libro exacto
+    const exact = BOOKS.find(b => normalize(b) === n);
+    if (exact) return exact;
+
+    // 3. Si coincide parcialmente (autocompletar)
+    const partial = BOOKS.find(b => normalize(b).startsWith(n));
+    if (partial) return partial;
+
+    return input; // fallback
+  }
+
+
+
   const runSearch = (q: string) => {
     if (!biblia) return [];
     let encontrados: Verso[] = [];
 
+    const normalizedQuery = normalize(q);
+
     // Caso 1: referencia
-    const refRegex = /^(\w+)\s+(\d+):(\d+)(?:-(\d+))?$/;
+    const refRegex = /^([\wáéíóúñ]+)\s+(\d+):(\d+)(?:-(\d+))?$/i;
     const match = q.match(refRegex);
 
     if (match) {
-      const [, libro, capitulo, inicio, fin] = match;
+      const [, libroRaw, capitulo, inicio, fin] = match;
+      const libro = resolveBookName(libroRaw);
       const cap = Number(capitulo);
       const start = Number(inicio);
       const end = fin ? Number(fin) : start;
 
       encontrados = biblia.verses.filter(
         (v: Verso) =>
-          v.book_name.toLowerCase() === libro.toLowerCase() &&
+          normalize(v.book_name) === normalize(libro) &&
           v.chapter === cap &&
           v.verse >= start &&
           v.verse <= end
       );
     } else {
       // Caso 3: capítulo
-      const chapterRegex = /^(\w+)\s+(\d+):?$/;
+      const chapterRegex = /^([\wáéíóúñ]+)\s+(\d+):?$/i;
       const matchChapter = q.match(chapterRegex);
 
       if (matchChapter) {
-        const [, libro, capitulo] = matchChapter;
+        const [, libroRaw, capitulo] = matchChapter;
+        const libro = resolveBookName(libroRaw);
         const cap = Number(capitulo);
 
         encontrados = biblia.verses.filter(
           (v: Verso) =>
-            v.book_name.toLowerCase() === libro.toLowerCase() &&
+            normalize(v.book_name) === normalize(libro) &&
             v.chapter === cap
         );
       } else {
         // Caso 2: palabra clave
-        const keyword = q.toLowerCase();
+        const keyword = normalize(q);
         setKeyword(keyword);
+
         encontrados = biblia.verses.filter((v: Verso) =>
-          v.text.toLowerCase().includes(keyword)
+          normalize(v.text).includes(keyword)
         );
       }
     }
 
     return encontrados;
   };
+
 
   useEffect(() => {
     const q = searchParams.get("query");
