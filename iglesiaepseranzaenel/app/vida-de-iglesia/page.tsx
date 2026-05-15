@@ -103,11 +103,11 @@ export default async function VidaDeIglesia() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Grupos temáticos</CardTitle>
+                <CardTitle>Grupos de Mujeres</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/grupo-tematico.jpg"
+                  src="/multimedia/reunion-mujeres.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}
