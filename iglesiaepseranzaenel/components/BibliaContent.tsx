@@ -21,6 +21,8 @@ export default function BibliaContent() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Verso[]>([]);
   const [keyword, setKeyword] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
 
   const [biblia, setBiblia] = useState<{ verses: Verso[] } | null>(null);
 
@@ -82,33 +84,27 @@ export default function BibliaContent() {
       .trim();
   }
 
+
   function resolveBookName(input: string) {
     const n = normalize(input);
 
-    // 1. Si coincide con abreviatura
-    if (BOOK_ALIASES[n]) return BOOK_ALIASES[n];
-
-    // 2. Si coincide con un libro exacto
+    // 1. Coincidencia exacta
     const exact = BOOKS.find(b => normalize(b) === n);
     if (exact) return exact;
 
-    // 3. Si coincide parcialmente (autocompletar)
+    // 2. Coincidencia parcial
     const partial = BOOKS.find(b => normalize(b).startsWith(n));
     if (partial) return partial;
 
-    return input; // fallback
+    return input;
   }
-
-
 
   const runSearch = (q: string) => {
     if (!biblia) return [];
     let encontrados: Verso[] = [];
 
-    const normalizedQuery = normalize(q);
-
-    // Caso 1: referencia
-    const refRegex = /^([\wáéíóúñ]+)\s+(\d+):(\d+)(?:-(\d+))?$/i;
+    // Regex mejorado para libros con números
+    const refRegex = /^([\wáéíóúñ\s]+)\s+(\d+):(\d+)(?:-(\d+))?$/i;
     const match = q.match(refRegex);
 
     if (match) {
@@ -126,8 +122,7 @@ export default function BibliaContent() {
           v.verse <= end
       );
     } else {
-      // Caso 3: capítulo
-      const chapterRegex = /^([\wáéíóúñ]+)\s+(\d+):?$/i;
+      const chapterRegex = /^([\wáéíóúñ\s]+)\s+(\d+):?$/i;
       const matchChapter = q.match(chapterRegex);
 
       if (matchChapter) {
@@ -141,7 +136,6 @@ export default function BibliaContent() {
             v.chapter === cap
         );
       } else {
-        // Caso 2: palabra clave
         const keyword = normalize(q);
         setKeyword(keyword);
 
@@ -153,6 +147,7 @@ export default function BibliaContent() {
 
     return encontrados;
   };
+
 
 
   useEffect(() => {
@@ -182,10 +177,44 @@ export default function BibliaContent() {
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            setQuery(value);
+
+            const n = normalize(value);
+
+            if (n.length === 0) {
+              setSuggestions([]);
+              return;
+            }
+
+            // sugerencias por coincidencia parcial
+            const filtered = BOOKS.filter(b =>
+              normalize(b).startsWith(n)
+            );
+
+            setSuggestions(filtered.slice(0, 5)); // máximo 5 sugerencias
+          }}
           placeholder='Ejemplo: "Juan 3:16 o Juan 3:16-20" o "amor"'
           className="flex-1 p-3 rounded border"
         />
+        {suggestions.length > 0 && (
+          <div className="bg-white border rounded shadow p-2 max-w-md mx-auto">
+            {suggestions.map((s) => (
+              <div
+                key={s}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => {
+                  setQuery(s);
+                  setSuggestions([]);
+                }}
+              >
+                {s}
+              </div>
+            ))}
+          </div>
+        )}
+
         <button
           type="submit"
           className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
