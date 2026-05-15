@@ -1,9 +1,11 @@
 import React from "react";
 
 async function getActividades() {
+const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.strapiapp.com";
   try {
+
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/actividades-semana?populate=*`,
+      `${API_URL}/api/actividades-semana?populate=*`,
       { next: { revalidate: 60 } }
     );
 
