@@ -44,21 +44,21 @@ export default async function SomosFamilia() {
           <h2 className="text-3xl font-semibold mb-8 text-center">Nuestra vida en comunidad</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Image
-              src="/multimedia/actividad1.jpg"
+              src="/multimedia/actividad-comunitaria.jpg"
               alt="Actividad comunitaria"
               width={400}
               height={250}
               className="rounded-lg shadow-md"
             />
             <Image
-              src="/multimedia/actividad2.jpg"
+              src="/multimedia/home-hero1.jpeg"
               alt="Grupo de alabanza"
               width={400}
               height={250}
               className="rounded-lg shadow-md"
             />
             <Image
-              src="/multimedia/actividad3.jpg"
+              src="/multimedia/reunion-abuelitas-1.jpeg"
               alt="Reunión en hogares"
               width={400}
               height={250}
