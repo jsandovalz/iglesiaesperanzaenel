@@ -51,7 +51,7 @@ export default async function SomosFamilia() {
               className="rounded-lg shadow-md"
             />
             <Image
-              src="/multimedia/home-hero1.jpeg"
+              src="/multimedia/home-hero1.jpg"
               alt="Grupo de alabanza"
               width={400}
               height={250}
