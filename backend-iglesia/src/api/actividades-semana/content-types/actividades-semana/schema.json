@@ -2,9 +2,9 @@
   "kind": "singleType",
   "collectionName": "actividades_semana",
   "info": {
-    "singularName": "actividades-semana",
-    "pluralName": "actividades-semanas",
-    "displayName": "Actividades de la Semana"
+    "singularName": "actividad_semana",
+    "pluralName": "actividades_semana",
+    "displayName": "Actividades Semana"
   },
   "options": {
     "draftAndPublish": true
