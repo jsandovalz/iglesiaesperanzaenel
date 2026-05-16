@@ -4,7 +4,7 @@
   "info": {
     "singularName": "actividades_semana",
     "pluralName": "actividades_semanas",
-    "displayName": "Actividades de la Semana"
+    "displayName": "Actividades Semana"
   },
   "options": {
     "draftAndPublish": true
