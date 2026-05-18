@@ -39,8 +39,6 @@ export async function getDataWithPagination(endpoint: string) {
 }
 
 export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre: string, descripcion: string) {
-  console.log("DESC=",descripcion);
-  console.log("HOST:=",API_URL);
   const res = await fetch(`${API_URL}/api/interaccions`, {
     cache:"no-store",
     method: "POST",
@@ -58,4 +56,24 @@ export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre:
   });
 
   return res.json();
+}
+
+export async function getActividades() {
+  console.log("get Actividades...");
+    try {
+      const res = await fetch(
+        `${API_URL}/api/actividadsemana?populate[actividades]=*`,
+        { next: { revalidate: 60 } }
+      );
+      console.log("RES=",res);
+
+      if (!res.ok) return null;
+
+      const data = await res.json();
+      console.log("data=",data);
+      return data?.data?.actividades || null;
+    } catch (error) {
+      console.error("Error cargando actividades:", error);
+      return null;
+    }
 }

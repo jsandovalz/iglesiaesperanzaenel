@@ -1,26 +1,6 @@
 import React from "react";
+import { getActividades } from "@/lib/api";
 
-async function getActividades() {
-const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.strapiapp.com";
-console.log("API URL=",API_URL);
-  try {
-
-    const res = await fetch(
-      `${API_URL}/api/actividadsemana?populate[actividades]=*`,
-      { next: { revalidate: 60 } }
-    );
-    console.log("RES=",res);
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    console.log("data=",data);
-    return data?.data?.actividades || null;
-  } catch (error) {
-    console.error("Error cargando actividades:", error);
-    return null;
-  }
-}
 
 export default async function ActividadesSemana() {
   console.log("calling actividades...");
