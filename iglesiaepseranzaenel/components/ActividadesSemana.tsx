@@ -2,12 +2,14 @@ import React from "react";
 
 async function getActividades() {
 const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.strapiapp.com";
+console.log("API URL=",API_URL);
   try {
 
     const res = await fetch(
       `${API_URL}/api/actividadsemana?populate[actividades]=*`,
       { next: { revalidate: 60 } }
     );
+    console.log("RES=",res);
 
     if (!res.ok) return null;
 
@@ -21,6 +23,7 @@ const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.str
 }
 
 export default async function ActividadesSemana() {
+  console.log("calling actividades...")
   const data = await getActividades();
 
   if (!data) {
