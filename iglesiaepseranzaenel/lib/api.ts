@@ -60,20 +60,22 @@ export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre:
 
 export async function getActividades() {
   console.log("get Actividades...");
-    try {
-      const res = await fetch(
-        `${API_URL}/api/actividadsemana?populate[actividades]=*`,
-        { next: { revalidate: 60 } }
-      );
-      console.log("RES=",res);
+  try {
+    const res = await fetch(
+      `${API_URL}/api/actividadsemana?populate[actividades]=*`,
+      { cache: "no-store" }
+    );
 
-      if (!res.ok) return null;
+    if (!res.ok) return null;
 
-      const data = await res.json();
-      console.log("data=",data);
-      return data?.data?.actividades || null;
-    } catch (error) {
-      console.error("Error cargando actividades:", error);
-      return null;
-    }
+    const json = await res.json();
+    console.log("data=", json);
+
+    // ESTA ES LA PARTE CORRECTA
+    return json?.data?.attributes || null;
+
+  } catch (error) {
+    console.error("Error cargando actividades:", error);
+    return null;
+  }
 }

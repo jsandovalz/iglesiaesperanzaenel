@@ -4,7 +4,7 @@ import { getActividades } from "@/lib/api";
 
 export default async function ActividadesSemana() {
   console.log("calling actividades...");
-  const data = await getActividades();
+  const data = await getActividades()  || [];
   console.log("actividades...",data);
 
   if (!data) {
