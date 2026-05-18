@@ -59,7 +59,6 @@ export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre:
 }
 
 export async function getActividades() {
-  console.log("get Actividades...");
   try {
     const res = await fetch(
       `${API_URL}/api/actividadsemana?populate[actividades]=*`,
@@ -69,10 +68,9 @@ export async function getActividades() {
     if (!res.ok) return null;
 
     const json = await res.json();
-    console.log("data=", json);
-
+  
     // ESTA ES LA PARTE CORRECTA
-    return json?.data?.attributes || null;
+    return json?.data || null;
 
   } catch (error) {
     console.error("Error cargando actividades:", error);
