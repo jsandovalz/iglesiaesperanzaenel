@@ -61,8 +61,10 @@ export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre:
 export async function getActividades() {
   try {
     const res = await fetch(
-      `${API_URL}/api/actividadsemana?populate[actividades]=*`,
-      { cache: "no-store" }
+      `${API_URL}/api/actividadsemana?populate[actividades][sort][0]=fecha:asc&populate[actividades][sort][1]=hora:asc`,
+      { cache: "no-store",
+        next: { revalidate: 300 } // 5 minutos
+       }
     );
 
     if (!res.ok) return null;

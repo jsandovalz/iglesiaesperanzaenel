@@ -5,13 +5,18 @@
   },
   "attributes": {
     "fecha": {
-      "type": "string"
+      "type": "date"
     },
     "titulo": {
       "type": "string"
     },
     "hora": {
-      "type": "string"
+      "type": "time"
+    },
+    "icono": {
+      "type": "media",
+      "multiple": false,
+      "required": false
     }
   }
 }
