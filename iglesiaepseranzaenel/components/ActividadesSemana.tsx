@@ -29,7 +29,7 @@ export default async function ActividadesSemana() {
   if (!data) {
     return (
       <section className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
-        <h2 className="text-2xl font-bold mb-4">Actividades de la Semana</h2>
+        <h2 className="text-2xl font-bold mb-4">Actividades la Semana</h2>
         <p className="text-gray-500">No hay actividades registradas.</p>
       </section>
     );
@@ -40,7 +40,7 @@ export default async function ActividadesSemana() {
   return (
     <section className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">
-        {data.titulo || "Actividades de la Semana"}
+        {data.titulo || "Actividades de Semana"}
       </h2>
 
       <div className="space-y-4">
