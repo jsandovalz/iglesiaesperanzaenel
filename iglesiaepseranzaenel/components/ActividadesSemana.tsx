@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 async function getActividades() {
@@ -25,6 +26,7 @@ console.log("API URL=",API_URL);
 export default async function ActividadesSemana() {
   console.log("calling actividades...");
   const data = await getActividades();
+  console.log("actividades...",data);
 
   if (!data) {
     return (
