@@ -23,7 +23,7 @@ console.log("API URL=",API_URL);
 }
 
 export default async function ActividadesSemana() {
-  console.log("calling actividades...")
+  console.log("calling actividades...");
   const data = await getActividades();
 
   if (!data) {
