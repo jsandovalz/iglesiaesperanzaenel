@@ -5,14 +5,15 @@ const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.str
   try {
 
     const res = await fetch(
-      `${API_URL}/api/actividadsemana?populate=*`,
+      `${API_URL}/api/actividadsemana?populate[actividades]=*`,
       { next: { revalidate: 60 } }
     );
 
     if (!res.ok) return null;
 
     const data = await res.json();
-    return data?.data?.attributes || null;
+    console.log("data=",data);
+    return data?.data?.actividades || null;
   } catch (error) {
     console.error("Error cargando actividades:", error);
     return null;
