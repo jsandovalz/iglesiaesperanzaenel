@@ -3,10 +3,8 @@ import { getActividades } from "@/lib/api";
 
 
 export default async function ActividadesSemana() {
-  console.log("calling actividades...");
   const data = await getActividades()  || [];
-  console.log("actividades...",data);
-
+  
   if (!data) {
     return (
       <section className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
