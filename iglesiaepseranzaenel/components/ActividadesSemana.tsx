@@ -5,7 +5,7 @@ const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.str
   try {
 
     const res = await fetch(
-      `${API_URL}/api/actividades_semana?populate=*`,
+      `${API_URL}/api/actividadsemana?populate=*`,
       { next: { revalidate: 60 } }
     );
 
