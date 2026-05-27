@@ -26,11 +26,22 @@ export default async function ActividadesSemana() {
           const dia = fecha.getDate();
           const mes = fecha.toLocaleString("es-ES", { month: "long" }).toUpperCase();
 
+          const icon = act.icono?.data?.attributes;
+
           return (
             <div
               key={i}
               className="bg-indigo-50 border border-indigo-200 rounded-xl shadow-md p-5 flex flex-col items-center text-center"
             >
+              {/* Ícono por actividad */}
+              {icon && (
+                <img
+                  src={icon.url}
+                  alt={icon.alternativeText || act.titulo}
+                  className="w-16 h-16 object-contain mb-4"
+                />
+              )}
+
               {/* Fecha estilo afiche */}
               <div className="bg-indigo-600 text-white px-4 py-2 rounded-lg mb-4">
                 <p className="text-2xl font-extrabold leading-none">{dia}</p>
