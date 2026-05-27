@@ -41,7 +41,7 @@ export default function HeroSlider({
 
   return (
     <section className="relative h-[70vh] w-full overflow-hidden">
-      {slides.map((slide, index) => (
+      {slides.map((slide, index) => {console.log("SlideImage=",slide.src);(
         <div
           key={index}
           className={cn(
@@ -80,7 +80,7 @@ export default function HeroSlider({
             )}
           </div>
         </div>
-      ))}
+      )})}
 
       {/* Controles manuales */}
       <button
