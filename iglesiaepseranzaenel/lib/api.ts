@@ -1,13 +1,14 @@
 import axios from "axios";
 import { toRichText } from './utils';
 
-const API_URL = process.env.API_URL || "https://iee-production.up.railway.app/";
+const API_URL = process.env.API_URL || "https://iee-production.up.railway.app";
 export const fetchData = async (endpoint: string) => {
   const res = await axios.get(`${API_URL}/api/${endpoint}`);
   return res.data.data;
 };
 
 export async function getData(endpoint: string) {
+  console.log("API_URL=",API_URL);
   //?populate=*
   try {
     const response = await fetch(`${API_URL}/api/${endpoint}`,{next: { revalidate: 86400 }})
