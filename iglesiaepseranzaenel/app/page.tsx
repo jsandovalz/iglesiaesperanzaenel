@@ -8,9 +8,9 @@ import ActividadesSemana from "@/components/ActividadesSemana";
 
 export const dynamic = "force-dynamic";
 export default async function Home() {
-  console.log("HOME");
-  const data = await getData('inicios?populate[Imagenes][populate]=src');
   
+  const data = await getData('inicios?populate[Imagenes][populate]=src');
+  console.log("DATA HOME=",data);
   // 2. Filtras y transformas con tu helper (sync)
   const slides = getSlidesByPage(data, "Inicio");
   
