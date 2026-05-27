@@ -14,7 +14,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'steadfast-triumph-c0193f1fb8.media.strapiapp.com',
+        hostname: "iee-production.up.railway.app",
+        pathname: "/uploads/**",
       },
     ],
   },
