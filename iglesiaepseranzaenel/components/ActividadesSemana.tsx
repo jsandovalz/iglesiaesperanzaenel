@@ -14,7 +14,7 @@ export default async function ActividadesSemana() {
       </section>
     );
   }
-  
+
   const actividadesOrdenadas = data.actividades.sort((a: any, b: any) => {
     const fechaA = new Date(a.fecha + " " + a.hora);
     const fechaB = new Date(b.fecha + " " + b.hora);
@@ -33,7 +33,8 @@ export default async function ActividadesSemana() {
           const dia = fecha.getDate();
           const mes = fecha.toLocaleString("es-ES", { month: "long" }).toUpperCase();
 
-          const icon = act.icono?.data?.attributes;
+          console.log("icon=",act.icono);
+          const icon = act.icono;
 
           return (
             <div
