@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toRichText } from './utils';
 
+console.log("ENV API_URL=",process.env.API_URL);
 const API_URL = process.env.API_URL || "https://iee-production.up.railway.app";
 console.log("CONST API_URL=",API_URL);
 export const fetchData = async (endpoint: string) => {
