@@ -1,16 +1,28 @@
 import axios from "axios";
 import { toRichText } from './utils';
 
-const API_URL = process.env.API_URL || "https://steadfast-triumph-c0193f1fb8.strapiapp.com";
+const API_URL = process.env.API_URL || "https://iee-production.up.railway.app/";
 export const fetchData = async (endpoint: string) => {
   const res = await axios.get(`${API_URL}/api/${endpoint}`);
   return res.data.data;
 };
 
+export async function GET(request) {
+  const secret = request.nextUrl.searchParams.get("secret");
+
+  if (secret !== process.env.REVALIDATE_SECRET) {
+    return Response.json({ message: "Invalid secret" }, { status: 401 });
+  }
+
+  await res.revalidate("/");
+
+  return Response.json({ revalidated: true });
+}
+
 export async function getData(endpoint: string) {
   //?populate=*
   try {
-    const response = await fetch(`${API_URL}/api/${endpoint}`,{cache: "no-store"})
+    const response = await fetch(`${API_URL}/api/${endpoint}`,{next: { revalidate: 86400 }})
     if(!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -25,7 +37,7 @@ export async function getData(endpoint: string) {
 export async function getDataWithPagination(endpoint: string) {
   //?populate=*
   try {
-    const response = await fetch(`${API_URL}/api/${endpoint}`,{cache: "no-store"})
+    const response = await fetch(`${API_URL}/api/${endpoint}`,{next: { revalidate: 600 }})
     if(!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -40,7 +52,7 @@ export async function getDataWithPagination(endpoint: string) {
 
 export async function createInteraction(Tipo: "Peticion" | "Testimonio", Nombre: string, descripcion: string) {
   const res = await fetch(`${API_URL}/api/interaccions`, {
-    cache:"no-store",
+    next: { revalidate: 300 },
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +75,7 @@ export async function getActividades() {
     const res = await fetch(
       `${API_URL}/api/actividadsemana?populate[actividades][sort][0]=fecha:asc&populate[actividades][sort][1]=hora:asc`,
       { cache: "no-store",
-        next: { revalidate: 300 } // 5 minutos
+        next: { revalidate: 600 } // 10 minutos
        }
     );
 
