@@ -10,10 +10,9 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   
   const data = await getData('inicios?populate[Imagenes][populate]=src');
-  console.log("DATA HOME=",data);
   // 2. Filtras y transformas con tu helper (sync)
   const slides = getSlidesByPage(data, "Inicio");
-  
+  console.log("DATA slides=",slides);
   return (
   <>
       
