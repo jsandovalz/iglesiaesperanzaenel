@@ -1,3 +1,5 @@
+import { getURL } from "@/lib/api";
+
 type File = {
   id: number;
   documentId: string;
@@ -20,11 +22,12 @@ type PaginaData = {
 
 export function getSlidesByPage(data: PaginaData[] | undefined, pageName: string) {
   if (!Array.isArray(data)) return [];
+  const url = getURL();
   const slideInicio = data.find(item => item.Pagina === pageName);
   return slideInicio?.Imagenes.flatMap(img => {
     const files = img?.src ?? [];
     return files.map(file => ({
-      src: file.url,
+      src: url + file.url,
       alt: img.alt,
       caption: img.caption,
       buttonText: img.button_text,
