@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 export default async function SomosFamilia() {
-
+  console.log("Somos Familia---");
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Somos Familia");
 
