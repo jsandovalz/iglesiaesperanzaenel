@@ -7,18 +7,6 @@ export const fetchData = async (endpoint: string) => {
   return res.data.data;
 };
 
-export async function GET(request) {
-  const secret = request.nextUrl.searchParams.get("secret");
-
-  if (secret !== process.env.REVALIDATE_SECRET) {
-    return Response.json({ message: "Invalid secret" }, { status: 401 });
-  }
-
-  await res.revalidate("/");
-
-  return Response.json({ revalidated: true });
-}
-
 export async function getData(endpoint: string) {
   //?populate=*
   try {
