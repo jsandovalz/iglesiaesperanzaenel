@@ -5,9 +5,21 @@ import { useState } from "react";
 import { Menu } from "lucide-react"; // ícono hamburguesa
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const items = [
+    { label: "Inicio", href: "/" },
+    { label: "Somos Familia", href: "/somos-familia" },
+    { label: "Vida de Iglesia", href: "/vida-de-iglesia" },
+    { label: "Multimedia", href: "/multimedia" },
+    { label: "Interacción", href: "/interaccion" },
+    { label: "Visítanos", href: "/visitanos" },
+    { label: "Generosidad", href: "/generosidad" },
+  ];
 
   return (
     <nav className="bg-white shadow-md fixed w-full z-50">
@@ -20,13 +32,24 @@ export default function Navbar() {
           />
         {/* Links desktop */}
         <div className="hidden md:flex gap-6">
-          <Link href="/">Inicio</Link>
-          <Link href="/somos-familia">Somos Familia</Link>
-          <Link href="/vida-de-iglesia">Vida de Iglesia</Link>
-          <Link href="/multimedia">Multimedia</Link>
-          <Link href="/interaccion">Interacción</Link>
-          <Link href="/visitanos">Visítanos</Link>
-          <Link href="/generosidad">Generosidad</Link>
+          {items.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              pathname.startsWith(item.href + "/"); // soporta subrutas
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-gray-700 hover:text-indigo-600 transition font-medium",
+                  isActive && "text-indigo-700 font-bold border-b-2 border-indigo-700"
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Botón hamburguesa móvil */}
