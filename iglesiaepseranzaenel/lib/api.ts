@@ -3,7 +3,6 @@ import { toRichText } from './utils';
 
 console.log("ENV API_URL=",process.env.API_URL);
 const API_URL = process.env.API_URL || "https://iee-production.up.railway.app";
-console.log("CONST API_URL=",API_URL);
 export const fetchData = async (endpoint: string) => {
   const res = await axios.get(`${API_URL}/api/${endpoint}`);
   return res.data.data;
@@ -13,7 +12,9 @@ export async function getData(endpoint: string) {
   console.log("API_URL=",API_URL);
   //?populate=*
   try {
+    console.log("Fetch=",`${API_URL}/api/${endpoint}`);
     const response = await fetch(`${API_URL}/api/${endpoint}`,{next: { revalidate: 86400 }})
+    console.log("Response=",response);
     if(!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
