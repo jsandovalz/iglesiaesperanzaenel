@@ -6,6 +6,7 @@ import { Menu } from "lucide-react"; // ícono hamburguesa
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
