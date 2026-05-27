@@ -3,11 +3,15 @@ import { toRichText } from './utils';
 
 console.log("ENV API_URL=",process.env.API_URL);
 const API_URL = process.env.API_URL || "https://iee-production.up.railway.app";
+
 export const fetchData = async (endpoint: string) => {
   const res = await axios.get(`${API_URL}/api/${endpoint}`);
   return res.data.data;
 };
 
+export function getURL() {
+  return process.env.API_URL || "https://iee-production.up.railway.app";
+}
 export async function getData(endpoint: string) {
   console.log("API_URL=",API_URL);
   //?populate=*

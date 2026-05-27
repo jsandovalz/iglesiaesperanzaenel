@@ -1,4 +1,4 @@
-import { getActividades } from "@/lib/api";
+import { getActividades, getURL } from "@/lib/api";
 
 
 export default async function ActividadesSemana() {
@@ -35,6 +35,7 @@ export default async function ActividadesSemana() {
 
           console.log("icon=",act.icono);
           const icon = act.icono;
+          const url = getURL();
 
           return (
             <div
@@ -44,7 +45,7 @@ export default async function ActividadesSemana() {
               {/* Ícono por actividad */}
               {icon && (
                 <img
-                  src={icon.url}
+                  src={url + "/"+ icon.url}
                   alt={icon.alternativeText || act.titulo}
                   className="w-16 h-16 object-contain mb-4"
                 />
