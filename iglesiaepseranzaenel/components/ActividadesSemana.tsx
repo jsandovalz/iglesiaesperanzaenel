@@ -1,5 +1,6 @@
 import { getActividades } from "@/lib/api";
 
+
 export default async function ActividadesSemana() {
   const data = await getActividades();
 
@@ -13,6 +14,12 @@ export default async function ActividadesSemana() {
       </section>
     );
   }
+  
+  const actividadesOrdenadas = data.actividades.sort((a: any, b: any) => {
+    const fechaA = new Date(a.fecha + " " + a.hora);
+    const fechaB = new Date(b.fecha + " " + b.hora);
+    return fechaA.getTime() - fechaB.getTime();
+  });
 
   return (
     <section className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
@@ -21,7 +28,7 @@ export default async function ActividadesSemana() {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {data.actividades.map((act: any, i: number) => {
+        {actividadesOrdenadas.map((act: any, i: number) => {
           const fecha = new Date(act.fecha);
           const dia = fecha.getDate();
           const mes = fecha.toLocaleString("es-ES", { month: "long" }).toUpperCase();
