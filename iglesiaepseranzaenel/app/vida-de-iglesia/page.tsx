@@ -23,7 +23,7 @@ export default async function VidaDeIglesia() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card>
               <CardHeader>
-                <CardTitle>Ministerio de Jóvenes</CardTitle>
+                <CardTitle>Grupo de Jóvenes</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
@@ -41,7 +41,7 @@ export default async function VidaDeIglesia() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Ministerio de Niños</CardTitle>
+                <CardTitle>Grupo de Niños</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
@@ -59,7 +59,7 @@ export default async function VidaDeIglesia() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Ministerio de Alabanza</CardTitle>
+                <CardTitle>Grupo de Alabanza</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
@@ -85,7 +85,7 @@ export default async function VidaDeIglesia() {
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
-                <CardTitle>Reunión de Abuelitas</CardTitle>
+                <CardTitle>Grupo de Adultos Mayores</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
@@ -108,6 +108,40 @@ export default async function VidaDeIglesia() {
               <CardContent className="space-y-4">
                 <Image
                   src="/multimedia/reunion-mujeres.jpeg"
+                  alt="Grupo temático"
+                  width={500}
+                  height={300}
+                  className="rounded-lg shadow-md"
+                />
+                <p>
+                  Grupos enfocados en temas específicos como matrimonios, liderazgo o discipulado, para crecer en áreas concretas.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Grupos de Varones</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Image
+                  src="/multimedia/reunion-varones.jpeg"
+                  alt="Grupo temático"
+                  width={500}
+                  height={300}
+                  className="rounded-lg shadow-md"
+                />
+                <p>
+                  Grupos enfocados en temas específicos como varones, liderazgo o discipulado, para crecer en áreas concretas.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Grupos de Matrimonios</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Image
+                  src="/multimedia/reunion-natrimonios.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}

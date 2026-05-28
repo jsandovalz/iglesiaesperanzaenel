@@ -10,6 +10,47 @@ export default async function Visitanos() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Visitanos");
 
+  const secciones = [
+    {
+      titulo: "Culto General",
+      items: [
+        "Domingo de 11:00 a 12:30",
+      ],
+    },
+    {
+      titulo: "Discipulados",
+      items: [
+        "Panorama Bíblico — Domingo 10:30 a 11:00",
+        "Niños — Domingo 11:00 a 12:30",
+        "Adolescentes — Sábado 17:00 a 19:00",
+        "Jóvenes — Sábado 17:00 a 19:00",
+        "Varones — Primer viernes 19:00 a 20:30",
+        "Mujeres — Segundo viernes 19:00 a 20:30",
+        "Matrimonios — Tercer viernes 19:00 a 20:30",
+        "Adultos mayores — Primer sábado 16:00 a 18:00",
+      ],
+    },
+    {
+      titulo: "Discipulados en Casa",
+      items: [
+        "Lunes — Zona Irpavi",
+        "Lunes — Zona Sopocachi",
+        "Miércoles — Zona 27 de Mayo (Periférica)",
+        "Jueves — Zona Tejar",
+        "Jueves — Zona Obrajes-Llojeta",
+        "Jueves — Miraflores",
+        "Jueves — Cota Cota",
+      ],
+    },
+    {
+      titulo: "Oración",
+      items: [
+        "Oración de mujeres — Martes 9:00 a 10:00",
+        "Oración general — Miércoles 19:00 a 20:00",
+      ],
+    },
+  ];
+
   return (
     <>
       {/* Hero reutilizado */}
@@ -46,58 +87,36 @@ export default async function Visitanos() {
         <Separator className="my-12" />
 
         {/* Horarios */}
-        <div id="horarios">
-          <h2 className="text-3xl font-semibold mb-8 text-center">Horarios</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Culto Dominical</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg text-gray-700">Domingos 10:00 AM</p>
-                <p className="text-gray-600">
-                  Reunión principal con alabanza, adoración y mensaje.
-                </p>
-              </CardContent>
-            </Card>
+        <section className="max-w-6xl mx-auto mt-12 px-6">
+          <h2 className="text-4xl font-bold text-center text-indigo-700 mb-10">
+            Horarios
+          </h2>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Reunión de Oración</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg text-gray-700">Miércoles 7:00 PM</p>
-                <p className="text-gray-600">
-                  Tiempo especial para interceder y buscar la presencia de Dios.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {secciones.map((sec, i) => (
+              <div
+                key={i}
+                className="bg-white shadow-lg rounded-xl p-6 border border-indigo-100"
+              >
+                <h3 className="text-xl font-bold text-indigo-700 mb-4 text-center">
+                  {sec.titulo}
+                </h3>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Grupos de Vida</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg text-gray-700">Viernes 7:30 PM</p>
-                <p className="text-gray-600">
-                  Encuentros en hogares para compartir la Palabra y la vida en comunidad.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Ministerio de Jóvenes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg text-gray-700">Sábados 6:00 PM</p>
-                <p className="text-gray-600">
-                  Reunión dinámica para jóvenes con música, enseñanza y actividades.
-                </p>
-              </CardContent>
-            </Card>
+                <ul className="space-y-2 text-gray-700">
+                  {sec.items.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2"
+                    >
+                      <span className="text-indigo-600 mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
       </section>
     </>
   );

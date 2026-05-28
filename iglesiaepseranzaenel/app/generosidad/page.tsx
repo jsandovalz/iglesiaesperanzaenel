@@ -32,22 +32,22 @@ export default async function Generosidad() {
         {/* Bloque de Ofrendas y Diezmos */}
         <div id="ofrendas">
           <h2 className="text-3xl font-semibold mb-8 text-center">
-            Diezmos y Ofrendas
+            Como Apoyar
           </h2>
           <Card>
             <CardHeader>
-              <CardTitle>Formas de dar</CardTitle>
+              <CardTitle>Formas de apoyar</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 text-center">
               <p className="text-gray-600">
-                Puedes dar de manera segura a través de nuestras cuentas locales
+                Puedes apoyar de manera segura a través de nuestras cuentas locales
                 o escaneando el código QR.
               </p>
 
               {/* Ejemplo QR */}
               <div className="flex flex-col items-center space-y-4">
                 <Image
-                  src="/multimedia/qr-donacion.png"
+                  src="/multimedia/QR.jpeg"
                   alt="QR para donaciones"
                   width={200}
                   height={200}
@@ -59,7 +59,7 @@ export default async function Generosidad() {
               </div>
 
               {/* Botones alternativos */}
-              <div className="flex justify-center space-x-4 mt-6">
+              {/* <div className="flex justify-center space-x-4 mt-6">
                 <a
                   href="https://www.paypal.com/donate?hosted_button_id=TU_ID"
                   target="_blank"
@@ -74,7 +74,7 @@ export default async function Generosidad() {
                 >
                   Dar con Tarjeta
                 </a>
-              </div>
+              </div> */}
 
               <p className="text-sm text-gray-500 mt-4">
                 También puedes dar en efectivo durante nuestros cultos semanales.

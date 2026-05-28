@@ -80,7 +80,7 @@ export default async function SobreNosotros() {
               </CardHeader>
               <CardContent className="space-y-4 text-center">
                 <Image
-                  src="/multimedia/pastor.jpeg"
+                  src="/multimedia/pastorJose.jpeg"
                   alt=""
                   width={300}
                   height={300}
@@ -94,18 +94,19 @@ export default async function SobreNosotros() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Pastora de Niños</CardTitle>
+                <CardTitle>Pastor</CardTitle>
+                <p className="mt-2 font-semibold">Javier Pelaez</p>
               </CardHeader>
               <CardContent className="space-y-4 text-center">
                 <Image
-                  src="/multimedia/pastora-ninos.jpg"
-                  alt="Pastora de Niños"
+                  src="/multimedia/pastorJavier.jpg"
+                  alt="Pastor"
                   width={300}
                   height={300}
                   className="rounded-full mx-auto shadow-md"
                 />
                 <p className="text-gray-700">
-                  Guía a los más pequeños en el camino de la fe con amor y dedicación.
+                  Guía en el camino de la fe con amor y dedicación.
                 </p>
               </CardContent>
             </Card>
