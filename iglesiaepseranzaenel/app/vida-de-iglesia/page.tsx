@@ -131,7 +131,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/natrimonios.jpeg"
+                  src="/multimedia/matrimonios.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}

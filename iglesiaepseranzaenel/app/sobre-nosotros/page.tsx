@@ -77,8 +77,8 @@ export default async function SobreNosotros() {
             {/* Pastor Principal */}
             <Card className="text-center shadow-lg p-6">
               <CardHeader>
-                <CardTitle className="text-xl font-bold">Pastor Principal</CardTitle>
-                <p className="mt-1 font-semibold text-gray-700">José Antonio Pacheco</p>
+                <CardTitle>Pastor Principal</CardTitle>
+                <p className="mt-2 font-semibold">José Antonio Pacheco</p>
               </CardHeader>
 
               <CardContent className="space-y-4">
@@ -98,13 +98,13 @@ export default async function SobreNosotros() {
             {/* Pastor */}
             <Card className="text-center shadow-lg p-6">
               <CardHeader>
-                <CardTitle className="text-xl font-bold">Pastor</CardTitle>
-                <p className="mt-1 font-semibold text-gray-700">Javier Pelaez</p>
+                <CardTitle>Pastor</CardTitle>
+                <p className="mt-2 font-semibold">Javier Pelaez</p>
               </CardHeader>
 
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/pastorJavier.jpeg"
+                  src="/multimedia/PastorJavier.jpeg"
                   alt="Pastor"
                   width={260}
                   height={260}
