@@ -99,7 +99,7 @@ export default async function SobreNosotros() {
               </CardHeader>
               <CardContent className="space-y-4 text-center">
                 <Image
-                  src="/multimedia/pastorJavier.jpeg"
+                  src="/multimedia/PastorJavier.jpeg"
                   alt="Pastor"
                   width={300}
                   height={300}

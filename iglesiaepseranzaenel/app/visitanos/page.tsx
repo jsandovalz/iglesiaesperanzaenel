@@ -1,4 +1,5 @@
 import HeroSlider from "@/components/HeroSlider";
+import HorariosTimeline from "@/components/HorariosTimeline";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
@@ -87,36 +88,7 @@ export default async function Visitanos() {
         <Separator className="my-12" />
 
         {/* Horarios */}
-        <section className="max-w-6xl mx-auto mt-12 px-6">
-          <h2 className="text-4xl font-bold text-center text-indigo-700 mb-10">
-            Horarios
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {secciones.map((sec, i) => (
-              <div
-                key={i}
-                className="bg-white shadow-lg rounded-xl p-6 border border-indigo-100"
-              >
-                <h3 className="text-xl font-bold text-indigo-700 mb-4 text-center">
-                  {sec.titulo}
-                </h3>
-
-                <ul className="space-y-2 text-gray-700">
-                  {sec.items.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-2"
-                    >
-                      <span className="text-indigo-600 mt-1">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
+        <HorariosTimeline secciones={secciones} />
       </section>
     </>
   );
