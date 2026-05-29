@@ -72,46 +72,52 @@ export default async function SobreNosotros() {
         {/* Equipo Pastoral */}
         <div id="equipo">
           <h2 className="text-3xl font-semibold mb-8 text-center">Equipo Pastoral</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Pastor Principal */}
+            <Card className="text-center shadow-lg p-6">
               <CardHeader>
-                <CardTitle>Pastor Principal</CardTitle>
-                <p className="mt-2 font-semibold">José Antonio Pacheco</p>
+                <CardTitle className="text-xl font-bold">Pastor Principal</CardTitle>
+                <p className="mt-1 font-semibold text-gray-700">José Antonio Pacheco</p>
               </CardHeader>
-              <CardContent className="space-y-4 text-center">
+
+              <CardContent className="space-y-4">
                 <Image
                   src="/multimedia/pastorJose.jpeg"
-                  alt=""
-                  width={300}
-                  height={300}
-                  className="rounded-full mx-auto shadow-md"
+                  alt="Pastor Principal"
+                  width={260}
+                  height={260}
+                  className="rounded-full mx-auto shadow-md object-cover"
                 />
-                <p className="text-gray-700">
+                <p className="text-gray-600">
                   Lidera la iglesia con visión y pasión por el evangelio.
                 </p>
               </CardContent>
             </Card>
 
-            <Card>
+            {/* Pastor */}
+            <Card className="text-center shadow-lg p-6">
               <CardHeader>
-                <CardTitle>Pastor</CardTitle>
-                <p className="mt-2 font-semibold">Javier Pelaez</p>
+                <CardTitle className="text-xl font-bold">Pastor</CardTitle>
+                <p className="mt-1 font-semibold text-gray-700">Javier Pelaez</p>
               </CardHeader>
-              <CardContent className="space-y-4 text-center">
+
+              <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/PastorJavier.jpeg"
+                  src="/multimedia/pastorJavier.jpeg"
                   alt="Pastor"
-                  width={300}
-                  height={300}
-                  className="rounded-full mx-auto shadow-md"
+                  width={260}
+                  height={260}
+                  className="rounded-full mx-auto shadow-md object-cover"
                 />
-                <p className="text-gray-700">
+                <p className="text-gray-600">
                   Guía en el camino de la fe con amor y dedicación.
                 </p>
               </CardContent>
             </Card>
           </div>
         </div>
+
       </section>
     </>
   );

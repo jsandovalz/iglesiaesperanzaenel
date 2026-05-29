@@ -19,7 +19,7 @@ export default async function VidaDeIglesia() {
       <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         {/* Ministerios */}
         <div>
-          <h2 className="text-3xl font-semibold mb-8 text-center">Ministerios</h2>
+          <h2 className="text-3xl font-semibold mb-8 text-center">Grupos de Vida</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card>
               <CardHeader>
@@ -45,7 +45,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/ministerio-ninos.jpeg"
+                  src="/multimedia/gruponinios.jpeg"
                   alt="Ministerio de Niños"
                   width={400}
                   height={250}
@@ -63,7 +63,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/ministerio-alabanza.jpeg"
+                  src="/multimedia/grupoalabanza.jpeg"
                   alt="Ministerio de Alabanza"
                   width={400}
                   height={250}
@@ -74,15 +74,6 @@ export default async function VidaDeIglesia() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-
-        <Separator className="my-12" />
-
-        {/* Grupos de Vida */}
-        <div>
-          <h2 className="text-3xl font-semibold mb-8 text-center">Grupos de Vida</h2>
-          <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
                 <CardTitle>Grupo de Adultos Mayores</CardTitle>
@@ -100,21 +91,20 @@ export default async function VidaDeIglesia() {
                 </p>
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle>Grupos de Mujeres</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/reunion-mujeres.jpeg"
+                  src="/multimedia/grupomujeres.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}
                   className="rounded-lg shadow-md"
                 />
                 <p>
-                  Grupos enfocados en temas específicos como matrimonios, liderazgo o discipulado, para crecer en áreas concretas.
+                  Grupo de mujeres enfocado a temas específicos, liderazgo, para crecer en áreas concretas.
                 </p>
               </CardContent>
             </Card>
@@ -124,7 +114,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/reunion-varones.jpeg"
+                  src="/multimedia/grupovarones.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}
@@ -141,7 +131,7 @@ export default async function VidaDeIglesia() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Image
-                  src="/multimedia/reunion-natrimonios.jpeg"
+                  src="/multimedia/natrimonios.jpeg"
                   alt="Grupo temático"
                   width={500}
                   height={300}
@@ -154,6 +144,8 @@ export default async function VidaDeIglesia() {
             </Card>
           </div>
         </div>
+        <Separator className="my-12" />
+
       </section>
     </>
   );
