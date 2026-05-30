@@ -27,11 +27,13 @@ export default async function Legendarios() {
     "legendario?populate[actividades][populate]=*"
   );
   console.log("dataLegendario=",dataLegendario);
+  const actividades = dataLegendario?.actividades ?? [];
+  const actividad = actividades[0]; 
 
-  const videos = dataLegendario?.actividades?.video ?? [];
+  const videos = actividad?.video ?? [];
   console.log("videos=",videos);
-  const imagenes = dataLegendario?.actividades?.foto ?? [];
-  const info = dataLegendario?.actividades?.rpm?.content ?? "";
+  const imagenes = actividad?.foto ?? [];
+  const info = actividad?.rpm ?? "";
 
   return (
     <>
