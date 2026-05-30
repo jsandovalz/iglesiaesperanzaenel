@@ -20,6 +20,7 @@ export default function Navbar() {
     { label: "Interacción", href: "/interaccion" },
     { label: "Visítanos", href: "/visitanos" },
     { label: "Generosidad", href: "/generosidad" },
+    { label: "Legendarios", href: "/legendarios" },
   ];
 
   return (
@@ -74,6 +75,7 @@ export default function Navbar() {
           <Link href="/interaccion" onClick={() => setOpen(false)}>Interacción</Link>
           <Link href="/visitanos" onClick={() => setOpen(false)}>Visítanos</Link>
           <Link href="/generosidad" onClick={() => setOpen(false)}>Generosidad</Link>
+          <Link href="/legendarios" onClick={() => setOpen(false)}>Legendarios</Link>
         </div>
       )}
     </nav>
