@@ -26,10 +26,12 @@ export default async function Legendarios() {
   const dataLegendario = await getData(
     "legendario?populate[actividades][populate]=*"
   );
+  console.log("dataLegendario=",dataLegendario);
 
-  const videos = dataLegendario?.video ?? [];
-  const imagenes = dataLegendario?.foto ?? [];
-  const info = dataLegendario?.rpm?.content ?? "";
+  const videos = dataLegendario?.actividades?.video ?? [];
+  console.log("videos=",videos);
+  const imagenes = dataLegendario?.actividades?.foto ?? [];
+  const info = dataLegendario?.actividades?.rpm?.content ?? "";
 
   return (
     <>
