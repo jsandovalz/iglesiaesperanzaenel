@@ -8,6 +8,17 @@ import { getSlidesByPage } from "@/utils/slides";
 
 export const dynamic = "force-dynamic";
 
+type VideoType = {
+  url: string;
+  alternativeText?: string;
+};
+
+interface MediaItem {
+  url: string;
+  alternativeText?: string;
+}
+
+
 export default async function Legendarios() {
   const data = await getData('inicios?populate[Imagenes][populate]=src');
   const slides = getSlidesByPage(data, "Legendarios");
@@ -31,7 +42,8 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={videos.map(v => v.src)} />
+            <Carousel items={videos.map((v: VideoType) => v.url)} />
+
           </div>
         )}
 
@@ -41,7 +53,7 @@ export default async function Legendarios() {
         {imagenes.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Galería</h2>
-            <Carousel items={imagenes.map(img => img.src)} />
+            <Carousel items={imagenes.map((img: MediaItem) => img.url)} />
           </div>
         )}
 
