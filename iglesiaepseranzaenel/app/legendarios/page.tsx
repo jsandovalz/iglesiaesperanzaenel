@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { getData } from "@/lib/api";
 import EventsList from "@/components/EventsList";
 import { getSlidesByPage } from "@/utils/slides";
+import { marked } from "marked";
 
 export const dynamic = "force-dynamic";
 
@@ -34,6 +35,7 @@ export default async function Legendarios() {
   console.log("videos=",videos);
   const imagenes = actividad?.foto ?? [];
   const info = actividad?.rpm ?? "";
+  const rpmHTML = marked(info);
 
   return (
     <>
@@ -42,7 +44,29 @@ export default async function Legendarios() {
 
       <section className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         
-        {/* Videos */}
+        {/* Información */}
+        {info && (
+          <div>
+            <h2 className="text-3xl font-semibold mb-8 text-center">Información</h2>
+            <Card>
+              <CardContent className="prose prose-indigo max-w-none p-6">
+                <div dangerouslySetInnerHTML={{ __html: rpmHTML }} />
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        <Separator />
+
+        {/* Eventos */}
+        <div>
+          <h2 className="text-3xl font-semibold mb-8 text-center">Eventos</h2>
+          <EventsList/>
+        </div>
+
+        <Separator />
+
+         {/* Videos */}
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
@@ -62,26 +86,6 @@ export default async function Legendarios() {
         )}
 
         <Separator />
-
-        {/* Información */}
-        {info && (
-          <div>
-            <h2 className="text-3xl font-semibold mb-8 text-center">Información</h2>
-            <Card>
-              <CardContent className="prose max-w-none p-6">
-                <div dangerouslySetInnerHTML={{ __html: info }} />
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        <Separator />
-
-        {/* Eventos */}
-        <div>
-          <h2 className="text-3xl font-semibold mb-8 text-center">Eventos</h2>
-          <EventsList/>
-        </div>
       </section>
     </>
   );
