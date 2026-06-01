@@ -31,13 +31,8 @@ export default async function Legendarios() {
   const actividades = dataLegendario?.actividades ?? [];
   const actividad = actividades[0]; 
   const url = getURL();
-  const videos = actividad?.video ?? [];
-  console.log("videos=",videos);
-  videos.map((v: any) => v.url = url + v.url);
-  console.log("videosAft=",videos);
-  const imagenes = actividad?.foto ?? [];
-  imagenes.map((i: any) => i.url = url + i.url);
-  console.log("imagenes=",imagenes);
+  const videos = actividad?.video.map((v: any) => v.url = url + v.url) ?? [];
+  const imagenes = actividad?.foto.map((i: any) => i.url = url + i.url) ?? [];
   const info = actividad?.rpm ?? "";
   const rpmHTML = marked(info);
 
@@ -74,7 +69,7 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={videos} />
+            <Carousel items={videos.map((v: VideoType) => v.url)} />
 
           </div>
         )}
@@ -85,7 +80,7 @@ export default async function Legendarios() {
         {imagenes.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Galería</h2>
-            <Carousel items={imagenes} />
+            <Carousel items={imagenes.map((img: MediaItem) => img.url)} />
           </div>
         )}
 
