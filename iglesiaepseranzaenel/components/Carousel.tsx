@@ -12,8 +12,8 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
   const next = () => setCurrent((c) => (c + 1) % items.length);
   const prev = () => setCurrent((c) => (c - 1 + items.length) % items.length);
-  console.log("ITEMS=",items);
-  items.map((item,i)=>console.log("URLIMAGes=",item.url));
+
+  const isVideo = (url: string) => url.endsWith(".mp4") || url.includes("video");
 
   return (
     <div className="relative w-full h-[350px] overflow-hidden rounded-xl shadow-lg">
@@ -24,12 +24,23 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
             i === current ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image
-            src={item.url}
-            alt={item.alternativeText || ""}
-            fill
-            className="object-cover"
-          />
+          {isVideo(item.url) ? (
+            <video
+              src={item.url}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <Image
+              src={item.url}
+              alt={item.alternativeText || ""}
+              fill
+              className="object-cover"
+            />
+          )}
         </div>
       ))}
 
