@@ -2,12 +2,13 @@
 import { useState, useEffect, Key } from 'react';
 import InfoCard from "@/components/InfoCard";
 import { formatDate, parseRichText, sortByDateOnly } from "@/lib/utils";
-import { getDataWithPagination } from "@/lib/api";
+import { getDataWithPagination, getURL } from "@/lib/api";
 
 export default function EventsList() {
   const [eventos, setEventos] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
+  const url=getURL();
 
   async function fetchEventos(p: number) {
     const res = await getDataWithPagination(`events?populate[Imagen]&sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5&populate=Imagen
@@ -33,7 +34,7 @@ export default function EventsList() {
             subtitle={t.Ubicacion}
             content={parseRichText(t.Descripcion)}
             title={t.Title}
-            imageUrl={t.Imagen?.url}
+            imageUrl={url+t.Imagen?.url}
           />
         ))}
       </div>
