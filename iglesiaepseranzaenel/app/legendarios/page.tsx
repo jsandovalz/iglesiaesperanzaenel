@@ -31,9 +31,9 @@ export default async function Legendarios() {
   const actividades = dataLegendario?.actividades ?? [];
   const actividad = actividades[0]; 
   const url = getURL();
-  const videos = actividad?.video.map((v: any) => v.url = url + v.url) ?? [];
+  const videos = actividad?.video.map((v: VideoType) => v.url = url + v.url) ?? [];
   console.log("videos=",videos);
-  const imagenes = actividad?.foto.map((i: any) => i.url = url + i.url) ?? [];
+  const imagenes = actividad?.foto.map((i: MediaItem) => i.url = url + i.url) ?? [];
   console.log("imagenes=",imagenes);
   const info = actividad?.rpm ?? "";
   const rpmHTML = marked(info);
