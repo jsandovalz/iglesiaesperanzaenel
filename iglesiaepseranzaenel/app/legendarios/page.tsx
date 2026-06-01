@@ -69,7 +69,7 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={videos.map((v: VideoType) => url + v.url)} />
+            <Carousel items={videos.map((v: VideoType) => v.url=url + v.url)} />
 
           </div>
         )}
@@ -80,7 +80,7 @@ export default async function Legendarios() {
         {imagenes.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Galería</h2>
-            <Carousel items={imagenes.map((img: MediaItem) => url + img.url)} />
+            <Carousel items={imagenes.map((img: MediaItem) => img.url = url + img.url)} />
           </div>
         )}
 
