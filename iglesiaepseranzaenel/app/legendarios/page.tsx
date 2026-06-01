@@ -33,8 +33,8 @@ export default async function Legendarios() {
   const url = getURL();
   const videos = actividad?.video ?? [];
   console.log("videos=",videos);
-  videos.map((v: any) => (url + v.url));
-  console.log("videosAfter=",videos);
+  videos.map((v: any) => v.url = url + v.url);
+  console.log("videosAft=",videos);
   const imagenes = actividad?.foto ?? [];
   console.log("imagenes=",imagenes);
   const info = actividad?.rpm ?? "";
