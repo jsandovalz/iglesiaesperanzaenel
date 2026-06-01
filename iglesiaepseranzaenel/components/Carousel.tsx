@@ -12,21 +12,24 @@ export default function Carousel({ items }: { items: any[] }) {
 
   return (
     <div className="relative w-full h-[350px] overflow-hidden rounded-xl shadow-lg">
-      {items.map((item, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            i === current ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={url + item.url}
-            alt={item.alternativeText || ""}
-            fill
-            className="object-cover"
-          />
-        </div>
-      ))}
+      {items.map((item, i) => {
+        console.log("URLIMAGE=",url);
+        (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={url+item.url}
+              alt={item.alternativeText || ""}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )
+      })}
 
       <button
         onClick={prev}
