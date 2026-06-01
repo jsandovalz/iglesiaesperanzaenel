@@ -33,6 +33,8 @@ export default async function Legendarios() {
   const url = getURL();
   const videos = actividad?.video ?? [];
   console.log("videos=",videos);
+  videos.map((v: any) => (url + v.url));
+  console.log("videosAfter=",videos);
   const imagenes = actividad?.foto ?? [];
   console.log("imagenes=",imagenes);
   const info = actividad?.rpm ?? "";
@@ -71,7 +73,7 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={videos.map((v: VideoType) => url + v.url)} />
+            <Carousel items={} />
 
           </div>
         )}
