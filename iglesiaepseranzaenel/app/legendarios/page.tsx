@@ -2,7 +2,7 @@ import HeroSlider from "@/components/HeroSlider";
 import Carousel from "@/components/Carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getData } from "@/lib/api";
+import { getData, getURL } from "@/lib/api";
 import EventsList from "@/components/EventsList";
 import { getSlidesByPage } from "@/utils/slides";
 import { marked } from "marked";
@@ -30,10 +30,11 @@ export default async function Legendarios() {
   console.log("dataLegendario=",dataLegendario);
   const actividades = dataLegendario?.actividades ?? [];
   const actividad = actividades[0]; 
-
+  const url = getURL();
   const videos = actividad?.video ?? [];
   console.log("videos=",videos);
   const imagenes = actividad?.foto ?? [];
+  console.log("imagenes=",imagenes);
   const info = actividad?.rpm ?? "";
   const rpmHTML = marked(info);
 
@@ -70,7 +71,7 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={videos.map((v: VideoType) => v.url)} />
+            <Carousel items={videos.map((v: VideoType) => url + v.url)} />
 
           </div>
         )}
@@ -81,7 +82,7 @@ export default async function Legendarios() {
         {imagenes.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Galería</h2>
-            <Carousel items={imagenes.map((img: MediaItem) => img.url)} />
+            <Carousel items={imagenes.map((img: MediaItem) => url + img.url)} />
           </div>
         )}
 

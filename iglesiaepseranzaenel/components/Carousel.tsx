@@ -1,15 +1,13 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { getURL } from "@/lib/api";
 
 export default function Carousel({ items }: { items: any[] }) {
   const [current, setCurrent] = useState(0);
 
   const next = () => setCurrent((c) => (c + 1) % items.length);
   const prev = () => setCurrent((c) => (c - 1 + items.length) % items.length);
-  const url = getURL();
-  items.map((item,i)=>console.log("URLIMAGe=",url+item.url));
+  items.map((item,i)=>console.log("URLIMAGes=",item.url));
 
   return (
     <div className="relative w-full h-[350px] overflow-hidden rounded-xl shadow-lg">
@@ -21,7 +19,7 @@ export default function Carousel({ items }: { items: any[] }) {
           }`}
         >
           <Image
-            src={url+item.url}
+            src={item.url}
             alt={item.alternativeText || ""}
             fill
             className="object-cover"
