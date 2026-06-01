@@ -2,7 +2,12 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Carousel({ items }: { items: any[] }) {
+interface MediaItem {
+  url: string;
+  alternativeText?: string;
+}
+
+export default function Carousel({ items }: { items: MediaItem[] }) {
   const [current, setCurrent] = useState(0);
 
   const next = () => setCurrent((c) => (c + 1) % items.length);
