@@ -12,6 +12,7 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
   const next = () => setCurrent((c) => (c + 1) % items.length);
   const prev = () => setCurrent((c) => (c - 1 + items.length) % items.length);
+  console.log("ITEMS=",items);
   items.map((item,i)=>console.log("URLIMAGes=",item.url));
 
   return (
