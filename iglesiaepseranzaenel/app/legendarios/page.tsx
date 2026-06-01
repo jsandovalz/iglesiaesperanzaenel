@@ -73,7 +73,7 @@ export default async function Legendarios() {
         {videos.length > 0 && (
           <div>
             <h2 className="text-3xl font-semibold mb-8 text-center">Videos</h2>
-            <Carousel items={} />
+            <Carousel items={videos} />
 
           </div>
         )}

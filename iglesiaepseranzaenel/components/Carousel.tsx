@@ -7,7 +7,7 @@ interface MediaItem {
   alternativeText?: string;
 }
 
-export default function Carousel({ items }: { items: MediaItem[] }) {
+export default function Carousel({ items }: { items: any[] }) {
   const [current, setCurrent] = useState(0);
 
   const next = () => setCurrent((c) => (c + 1) % items.length);
