@@ -60,7 +60,7 @@ export default async function Legendarios() {
         {/* Eventos */}
         <div>
           <h2 className="text-3xl font-semibold mb-8 text-center">Eventos</h2>
-          <EventsList/>
+          <EventsList categoria="Legendarios" />
         </div>
 
         <Separator />

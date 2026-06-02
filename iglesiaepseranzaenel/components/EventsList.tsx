@@ -1,18 +1,29 @@
 "use client";
-import { useState, useEffect, Key } from 'react';
+import { useState, useEffect } from 'react';
 import InfoCard from "@/components/InfoCard";
 import { formatDate, parseRichText, sortByDateOnly } from "@/lib/utils";
 import { getDataWithPagination, getURL } from "@/lib/api";
 
-export default function EventsList() {
+interface EventsListProps {
+  categoria?: string; // opcional
+}
+
+export default function EventsList({ categoria = "" }: EventsListProps) {
   const [eventos, setEventos] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const url=getURL();
+  const url = getURL();
 
   async function fetchEventos(p: number) {
-    const res = await getDataWithPagination(`events?populate[Imagen]&sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5&populate=Imagen
-`);
+    let query = `events?populate=Imagen&sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5`;
+
+    // Si viene categoría, usar tu query funcional
+    if (categoria.trim() !== "") {
+      query += `&filters[categoria][nombre][$eq]=${categoria}`;
+    }
+
+    const res = await getDataWithPagination(query);
+
     const eventosSort = sortByDateOnly(res.data, "Fecha_Inicio", "asc");
     setEventos(eventosSort);
     setPageCount(res.meta.pagination.pageCount);
@@ -20,13 +31,12 @@ export default function EventsList() {
 
   useEffect(() => {
     fetchEventos(page);
-  }, [page]);
+  }, [page, categoria]);
 
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-8">
         {eventos.map((t, i) => (
-
           <InfoCard
             key={i}
             fechaInicio={formatDate(t.Fecha_Inicio)}
@@ -34,7 +44,7 @@ export default function EventsList() {
             subtitle={t.Ubicacion}
             content={parseRichText(t.Descripcion)}
             title={t.Title}
-            imageUrl={url+t.Imagen?.url}
+            imageUrl={url + t.Imagen?.url}
           />
         ))}
       </div>
