@@ -5,7 +5,7 @@ import { formatDate, parseRichText, sortByDateOnly } from "@/lib/utils";
 import { getDataWithPagination, getURL } from "@/lib/api";
 
 interface EventsListProps {
-  categoria?: string; // opcional
+  categoria?: string; // puede ser "Legendarios" o "Legendarios, Juvenil"
 }
 
 export default function EventsList({ categoria = "" }: EventsListProps) {
@@ -17,9 +17,17 @@ export default function EventsList({ categoria = "" }: EventsListProps) {
   async function fetchEventos(p: number) {
     let query = `events?populate=Imagen&sort=Fecha_Inicio:asc&pagination[page]=${p}&pagination[pageSize]=5`;
 
-    // Si viene categoría, usar tu query funcional
+    // Si viene categoría(s)
     if (categoria.trim() !== "") {
-      query += `&filters[categoria][nombre][$eq]=${categoria}`;
+      const categoriasArray = categoria
+        .split(",")
+        .map(c => c.trim())
+        .filter(c => c.length > 0);
+
+      // Convertir array → Legendarios,Juvenil
+      const categoriasQuery = categoriasArray.join(",");
+
+      query += `&filters[categoria][nombre][$in]=${categoriasQuery}`;
     }
 
     const res = await getDataWithPagination(query);
