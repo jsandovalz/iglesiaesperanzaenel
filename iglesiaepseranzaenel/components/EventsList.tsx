@@ -52,7 +52,7 @@ export default function EventsList({ categoria = "" }: EventsListProps) {
             subtitle={t.Ubicacion}
             content={parseRichText(t.Descripcion)}
             title={t.Title}
-            imageUrl={url + t.Imagen?.url}
+            imageUrl={t.Imagen?.url? url + t.Imagen?.url:""}
           />
         ))}
       </div>
