@@ -56,40 +56,65 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
         {/* Botones navegación */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
         >
           ‹
         </button>
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
         >
           ›
         </button>
       </div>
 
-      {/* Modal fullscreen */}
+      {/* Modal fullscreen mejorado */}
       {showModal && selectedItem && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300"
           onClick={() => setShowModal(false)}
         >
-          <div className="relative w-[90vw] h-[90vh]">
-            {isVideo(selectedItem.url) ? (
-              <video
-                src={selectedItem.url}
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-              />
-            ) : (
-              <Image
-                src={selectedItem.url}
-                alt={selectedItem.alternativeText || ""}
-                fill
-                className="object-contain"
-              />
-            )}
+          <div className="relative max-w-5xl max-h-[90vh] w-full h-full p-4">
+            {/* Botón de cierre */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70"
+            >
+              ✕
+            </button>
+
+            {/* Navegación dentro del modal */}
+            <button
+              onClick={prev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60"
+            >
+              ‹
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60"
+            >
+              ›
+            </button>
+
+            {/* Contenido */}
+            <div className="w-full h-full flex items-center justify-center">
+              {isVideo(selectedItem.url) ? (
+                <video
+                  src={selectedItem.url}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <Image
+                  src={selectedItem.url}
+                  alt={selectedItem.alternativeText || ""}
+                  fill
+                  className="object-contain"
+                />
+              )}
+            </div>
           </div>
         </div>
       )}
