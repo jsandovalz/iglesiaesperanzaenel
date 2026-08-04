@@ -19,39 +19,36 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
   return (
     <>
-      {/* Carrusel principal más grande */}
+      {/* Carrusel principal */}
       <div className="relative w-full h-[60vh] overflow-hidden rounded-xl shadow-lg">
-        {items.map((item, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-700 cursor-pointer ${
-              i === current ? "opacity-100" : "opacity-0"
-            }`}
-            onClick={() => {
-              setSelectedIndex(i); // guarda índice exacto del click
-              setShowModal(true);
-            }}
-          >
-            {isVideo(item.url) ? (
-              <video
-                src={item.url}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="object-contain w-full h-full bg-black"
-              />
-            ) : (
-              <Image
-                src={item.url}
-                alt={item.alternativeText || ""}
-                fill
-                className="object-contain bg-black"
-                sizes="100vw"
-              />
-            )}
-          </div>
-        ))}
+        {/* Renderiza solo el slide actual */}
+        <div
+          key={current}
+          className="absolute inset-0 transition-opacity duration-700 cursor-pointer"
+          onClick={() => {
+            setSelectedIndex(current);
+            setShowModal(true);
+          }}
+        >
+          {isVideo(items[current].url) ? (
+            <video
+              src={items[current].url}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-contain w-full h-full bg-black"
+            />
+          ) : (
+            <Image
+              src={items[current].url}
+              alt={items[current].alternativeText || ""}
+              fill
+              className="object-contain bg-black"
+              sizes="100vw"
+            />
+          )}
+        </div>
 
         {/* Botones navegación */}
         <button
