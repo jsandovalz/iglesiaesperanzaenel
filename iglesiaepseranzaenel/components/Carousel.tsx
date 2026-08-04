@@ -28,7 +28,12 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
               i === current ? "opacity-100" : "opacity-0"
             }`}
             onClick={() => {
+<<<<<<< HEAD
               setSelectedIndex(i); // guarda índice correcto
+=======
+              setSelectedItem(item);
+              setCurrent(i); // importante: actualiza índice
+>>>>>>> 5dc9f33e6762b3c90bb7bf7e668c5abe8d6eef0d
               setShowModal(true);
             }}
           >
@@ -84,7 +89,11 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
       </div>
 
       {/* Modal fullscreen */}
+<<<<<<< HEAD
       {showModal && selectedIndex !== null && (
+=======
+      {showModal && selectedItem && (
+>>>>>>> 5dc9f33e6762b3c90bb7bf7e668c5abe8d6eef0d
         <div
           className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50"
           onClick={() => setShowModal(false)}
@@ -100,19 +109,27 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
             {/* Navegación dentro del modal */}
             <button
+<<<<<<< HEAD
               onClick={() =>
                 setSelectedIndex(
                   (selectedIndex - 1 + items.length) % items.length
                 )
               }
+=======
+              onClick={prev}
+>>>>>>> 5dc9f33e6762b3c90bb7bf7e668c5abe8d6eef0d
               className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 text-white p-4 rounded-full hover:bg-black/60 z-50"
             >
               ‹
             </button>
             <button
+<<<<<<< HEAD
               onClick={() =>
                 setSelectedIndex((selectedIndex + 1) % items.length)
               }
+=======
+              onClick={next}
+>>>>>>> 5dc9f33e6762b3c90bb7bf7e668c5abe8d6eef0d
               className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 text-white p-4 rounded-full hover:bg-black/60 z-50"
             >
               ›
@@ -120,7 +137,11 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
             {/* Contenido */}
             <div className="w-full h-full flex items-center justify-center p-4">
+<<<<<<< HEAD
               {isVideo(items[selectedIndex].url) ? (
+=======
+              {isVideo(selectedItem.url) ? (
+>>>>>>> 5dc9f33e6762b3c90bb7bf7e668c5abe8d6eef0d
                 <video
                   src={items[selectedIndex].url}
                   controls
