@@ -16,15 +16,16 @@ interface HeroSliderProps {
   slides: Slide[];
   autoPlay?: boolean;
   interval?: number; // tiempo en ms (ej. 5000 = 5s)
+  fitMode?: "cover" | "contain"; // nuevo prop
 }
 
 export default function HeroSlider({
   slides,
   autoPlay = true,
-  interval = 5000
+  interval = 5000,
+  fitMode = "cover" // valor por defecto
 }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
-  const isDev = process.env.NODE_ENV === "development";
   const nextSlide = () =>
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   const prevSlide = () =>
@@ -49,23 +50,15 @@ export default function HeroSlider({
             index === current ? "opacity-100" : "opacity-0"
           )}
         >
-          {/* {!isDev? ( */}
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              className="object-cover brightness-75"
-              priority={index === 0}
-            />
-           {/* ) : (
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className="absolute inset-0 w-full h-full object-cover"
-            ></img>
-           )}
-           */}
-          
+          <Image
+            src={slide.src}
+            alt={slide.alt || ""}
+            fill
+            className={fitMode === "contain" ? "object-contain bg-black" : "object-cover"}
+            sizes="100vw"
+            priority={index === 0}
+          />
+
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-up">
               {slide.caption}
