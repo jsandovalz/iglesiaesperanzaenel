@@ -28,7 +28,7 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
               i === current ? "opacity-100" : "opacity-0"
             }`}
             onClick={() => {
-              setSelectedIndex(i); // guarda índice correcto
+              setSelectedIndex(i); // guarda índice exacto del click
               setShowModal(true);
             }}
           >
@@ -100,19 +100,19 @@ export default function Carousel({ items }: { items: MediaItem[] }) {
 
             {/* Navegación dentro del modal */}
             <button
-              onClick={() =>
-                setSelectedIndex(
-                  (selectedIndex - 1 + items.length) % items.length
-                )
-              }
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((selectedIndex - 1 + items.length) % items.length);
+              }}
               className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 text-white p-4 rounded-full hover:bg-black/60 z-50"
             >
               ‹
             </button>
             <button
-              onClick={() =>
-                setSelectedIndex((selectedIndex + 1) % items.length)
-              }
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((selectedIndex + 1) % items.length);
+              }}
               className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 text-white p-4 rounded-full hover:bg-black/60 z-50"
             >
               ›
